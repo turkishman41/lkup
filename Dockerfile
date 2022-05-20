@@ -1,7 +1,7 @@
 FROM python:latest
 
 RUN apt update && apt upgrade -y
-RUN apt install git curl python3-pip ffmpeg -y
+RUN apt install git curl python3-pip ffmpeg aria2 -y
 
 RUN cd /
 RUN git clone https://github.com/ali-mmagneto/URL-Yukleyici.git
