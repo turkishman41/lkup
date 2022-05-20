@@ -11,4 +11,5 @@ dnspython
 python-dotenv
 git+https://github.com/pyrogram/pyrogram@master
 git+https://github.com/yt-dlp/yt-dlp
+git+https://github.com/aria2/aria2
 https://github.com/Tinche/aiofiles/archive/master.zip
