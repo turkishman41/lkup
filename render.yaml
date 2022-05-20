@@ -1,7 +1,7 @@
 services:
-  - type: static
+  - type: web
     name: urlyukle
-    env: docker
+    env: python
     plan: free
     repo: https://github.com/ali-mmagneto/URL-Yukleyici.git
     dockerfilePath: ./Dockerfile
