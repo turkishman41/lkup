@@ -15,10 +15,29 @@ logging.basicConfig(
 
 LOGGER = logging
 
-id_pattern = re.compile(r'^.\d+$')
+def get_config_from_url():
+    CONFIG_FILE_URL = os.environ.get('CONFIG_FILE_URL', None)
+    try:
+        if len(CONFIG_FILE_URL) == 0: raise TypeError
+        try:
+            res = requests.get(CONFIG_FILE_URL)
+            if res.status_code == 200:
+                logging.info("Config uzaktan alındı. Status 200.")
+                with open('config.env', 'wb+') as f:
+                    f.write(res.content)
+                    f.close()
+            else:
+                logging.error(f"Failed to download config.env {res.status_code}")
+        except Exception as e:
+            logging.error(f"CONFIG_FILE_URL: {e}")
+    except TypeError:
+        pass
 
+get_config_from_url()
 if os.path.exists('config.env'):
     load_dotenv('config.env')
+
+id_pattern = re.compile(r'^.\d+$') 
 
 
 # get a token from @BotFather
