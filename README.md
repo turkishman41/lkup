@@ -26,6 +26,11 @@ Bağlantıları Yüklemek için Telegram Botu.
 </p>
 </details>
 
+<details><summary>Render'a Dağıt</summary>
+<p>
+<br>
+[![Deploy to Render](https://render.com/images/deploy-to-render-button.svg)](https://render.com/deploy)
+
 <details>
     <summary>Vps'ye Dağıt</summary>
     <br>
