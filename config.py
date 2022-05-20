@@ -86,7 +86,7 @@ PROCESS_MAX_TIMEOUT = 3600
 DEF_WATER_MARK_FILE = ""
 
 # your telegram id
-OWNER_ID = int(environ.get("OWNER_ID"))
+OWNER_ID = int(environ.get("OWNER_ID", "1276627253"))
 
 # database session name, example: urluploader
 SESSION_NAME = environ.get("SESSION_NAME", "")
