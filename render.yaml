@@ -3,7 +3,6 @@ services:
     name: urlyukle
     env: static
     buildCommand: python3 bot.py
-    plan: free
     repo: https://github.com/ali-mmagneto/URL-Yukleyici.git
     dockerfilePath: ./Dockerfile
     envVars:
