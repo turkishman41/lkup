@@ -2,7 +2,14 @@ services:
   u1:
     build: .
     environment:
-      CONFIG_FILE_URL: $CONFIG_FILE_URL
+      BOT_TOKEN: $BOT_TOKEN
+      APP_ID: $APP_ID
+      API_HASH: $API_HASH
+      LOG_CHANNEL: $LOG_CHANNEL
+      OWNER_ID: $OWNER_ID
+      AUTH_CHANNEL: $AUTH_CHANNEL
+      DATABASE_URL: $DATABASE_URL
+      SESSION_NAME: $SESSION_NAME
     ports:
       - 8080
     resources:
