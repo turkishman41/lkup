@@ -182,6 +182,7 @@ async def echo(bot, update):
             if "duration" in current_r_json:
                 duration = current_r_json["duration"]
             if "formats" in current_r_json:
+                format_ext = formats.get("ext")
                 for formats in current_r_json["formats"]:
                     format_id = formats.get("format_id")
                     format_string = formats.get("format_note")
@@ -198,8 +199,10 @@ async def echo(bot, update):
                             + " "
                             + approx_file_size
                             + " "
+                            + format_ext
+                            + " " 
                     ).replace("unknown", "")
-                    cb_string_video = "{}|{}|{}|{}".format("video", format_id, random)
+                    cb_string_video = "{}|{}|{}|{}".format("video", format_id, format_ext, random)
                     ikeyboard = []
                     if "drive.google.com" in url:
                         ikeyboard = [
