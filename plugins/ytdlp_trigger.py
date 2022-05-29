@@ -22,8 +22,8 @@ from database.database import db
 
 
 
-@Client.on_message(filters.private & filters.regex(pattern=URL_REGEX))
-@Client.on_edited_message(filters.private & filters.regex(pattern=URL_REGEX))
+@Client.on_message(filters.regex(pattern=URL_REGEX))
+@Client.on_edited_message(filters.regex(pattern=URL_REGEX))
 async def echo(bot, update):
     if LOG_CHANNEL:
         try:
