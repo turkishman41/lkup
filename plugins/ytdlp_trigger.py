@@ -22,8 +22,8 @@ from database.database import db
 
 
 
-@Client.on_message(filters.regex(pattern=URL_REGEX))
-@Client.on_edited_message(filters.regex(pattern=URL_REGEX))
+@Client.on_message(filters.private & filters.regex(pattern=URL_REGEX))
+@Client.on_edited_message(filters.private & filters.regex(pattern=URL_REGEX))
 async def echo(bot, update):
     if LOG_CHANNEL:
         try:
@@ -116,7 +116,7 @@ async def echo(bot, update):
             "-j",
             url
         ]
-    if "moly.cloud" in url:
+    if ".cloud" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
     if "closeload" in url:
@@ -184,7 +184,7 @@ async def echo(bot, update):
             if "formats" in current_r_json:
                 for formats in current_r_json["formats"]:
                     format_ext = formats.get("ext")
-                    get_data = await db.get_blocked_exts(update.from_user.id)
+                    get_data = await db.get_blocked_exts(user.id)
                     if format_ext not in get_data:
                         continue 
                     format_id = formats.get("format_id")
