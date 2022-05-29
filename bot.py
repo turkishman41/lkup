@@ -19,7 +19,7 @@ class Bot(Client):
 
     def __init__(self):
         super().__init__(
-            name=SESSION_NAME,
+            session_name=SESSION_NAME,
             api_id=APP_ID,
             api_hash=API_HASH,
             bot_token=BOT_TOKEN,
