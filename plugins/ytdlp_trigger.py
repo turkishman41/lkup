@@ -182,11 +182,11 @@ async def echo(bot, update):
             if "duration" in current_r_json:
                 duration = current_r_json["duration"]
             if "formats" in current_r_json:
-                format_ext = formats.get("ext")
-                get_data = await db.get_blocked_exts(update.from_user.id)
-                if format_ext not in get_data:
-                    continue
                 for formats in current_r_json["formats"]:
+                    format_ext = formats.get("ext")
+                    get_data = await db.get_blocked_exts(update.from_user.id)
+                    if format_ext not in get_data:
+                        continue 
                     format_id = formats.get("format_id")
                     format_string = formats.get("format_note")
 
