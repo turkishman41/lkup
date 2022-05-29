@@ -109,6 +109,10 @@ class Database:
         user = await self.col.find_one({'id': int(id)})
         return user or None
 
+    async def get_blocked_exts(self, id):
+        user = await self.col.find_one({'id': int(id)})
+        return user.get('blocked_exts', ["webm", "mhtml", "3gp", "m4a", "mp4"])
+
     async def set_blocked_exts(self, id, blocked_exts):
         await self.col.update_one({'id': id}, {'$set': {'blocked_exts': blocked_exts}})
 
