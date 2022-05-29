@@ -9,6 +9,6 @@ TgCrypto
 motor
 dnspython
 python-dotenv
-pyrogram==1.4.16
+pyrogram
 git+https://github.com/yt-dlp/yt-dlp
 https://github.com/Tinche/aiofiles/archive/master.zip
