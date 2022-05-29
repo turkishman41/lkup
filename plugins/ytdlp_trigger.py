@@ -198,8 +198,6 @@ async def echo(bot, update):
                             + " "
                             + approx_file_size
                             + " "
-                            + format_ext
-                            + " "
                     ).replace("unknown", "")
                     cb_string_video = "{}|{}|{}|{}".format("video", format_id, format_ext, random)
                     ikeyboard = []
