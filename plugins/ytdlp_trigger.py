@@ -199,7 +199,7 @@ async def echo(bot, update):
                             + approx_file_size
                             + " "
                     ).replace("unknown", "")
-                    cb_string_video = "{}|{}|{}|{}".format("video", format_id, format_ext, random)
+                    cb_string_video = "{}|{}|{}|{}".format("video", format_id, random)
                     ikeyboard = []
                     if "drive.google.com" in url:
                         ikeyboard = [
