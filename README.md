@@ -38,7 +38,7 @@ Bağlantıları Yüklemek için Telegram Botu.
 <details><summary>Scalingo'ya Dağıt</summary>
 <p>
 <br>
-<a href="https://my.scalingo.com/deploy?repository=https://github.com/ali-mmagneto/URL-Yukleyici">
+<a href="https://my.scalingo.com/deploy?source=https://github.com/ali-mmagneto/URL-Yukleyici">
   <img src="https://cdn.scalingo.com/deploy/button.svg" alt="Deploy">
 </a>
 </p>
