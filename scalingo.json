@@ -7,9 +7,9 @@
   "buildpacks": [{
     "url": "https://github.com/trelicon/aria2-heroku"
   }],
-  "website": "https://kinto.readthedocs.io/en/stable/index.html",
-  "repository": "https://github.com/Scalingo/kinto-scalingo",
-  "logo": "https://avatars0.githubusercontent.com/u/13413813",
+  "website": "t.me/mmagneto",
+  "repository": "https://github.com/ali-mmagneto/URL-Yukleyici",
+  "logo": "https://telegra.ph/file/120b6577c124a1de0e074.jpg",
   "env": {
     "BOT_TOKEN": {
       "description": "BotFather'dan Al",
