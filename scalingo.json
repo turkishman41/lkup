@@ -1,0 +1,40 @@
+{
+  "name": "Kinto",
+  "description": "Store, Sync, and Share",
+  "addons": [
+    "scalingo-postgresql"
+  ],
+  "website": "https://kinto.readthedocs.io/en/stable/index.html",
+  "repository": "https://github.com/Scalingo/kinto-scalingo",
+  "logo": "https://avatars0.githubusercontent.com/u/13413813",
+  "env": {
+    "BOT_TOKEN": {
+      "description": "BotFather'dan Al",
+      "generator": "secret"
+    },
+    "API_HASH": {
+      "description": "my.telegram.org",
+      "generator": "secret"
+    },
+    "APP_ID": {
+      "description": "my.telegram.org",
+      "generator": "secret"
+    },
+    "OWNER_ID": {
+      "description": "Telegram İd'in",
+      "generator": "secret"
+    },
+    "SESSION_NAME": {
+      "description": "oturum adın",
+      "generator": "secret"
+    },
+    "DATABASE_URL": {
+      "description": "Mongodb url",
+      "generator": "secret"
+    },
+    "AUTH_CHANNEL": {
+      "description": "kanal idsi -100 lü",
+      "generator": "secret"
+    },
+  }
+}
