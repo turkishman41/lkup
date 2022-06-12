@@ -35,6 +35,15 @@ Bağlantıları Yüklemek için Telegram Botu.
 </p>
 </details>
 
+<details><summary>Scalingo'ya Dağıt</summary>
+<p>
+<br>
+<a href="https://my.scalingo.com/deploy">
+  <img src="https://cdn.scalingo.com/deploy/button.svg" alt="Deploy">
+</a>
+</p>
+</details>
+
 <details><summary>Okteto'ya Dağıt</summary>
 <p>
 <br>
