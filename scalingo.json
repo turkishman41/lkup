@@ -4,6 +4,9 @@
   "addons": [
     "scalingo-postgresql"
   ],
+  "buildpacks": [{
+    "url": "https://github.com/trelicon/aria2-heroku"
+  }],
   "website": "https://kinto.readthedocs.io/en/stable/index.html",
   "repository": "https://github.com/Scalingo/kinto-scalingo",
   "logo": "https://avatars0.githubusercontent.com/u/13413813",
