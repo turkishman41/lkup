@@ -1,6 +1,6 @@
 {
-  "name": "Kinto",
-  "description": "Store, Sync, and Share",
+  "name": "URL-Yukleyici",
+  "description": "Tg Bot",
   "addons": [
     "scalingo-postgresql"
   ],
