@@ -26,6 +26,15 @@ Bağlantıları Yüklemek için Telegram Botu.
 </p>
 </details>
 
+<details><summary>Scalingo'ya Dağıt</summary>
+<p>
+<br>
+<a href="https://my.scalingo.com/deploy?repository=https://github.com/ali-mmagneto/URL-Yukleyici">
+  <img src="https://cdn.scalingo.com/deploy/button.svg" alt="Deploy">
+</a>
+</p>
+</details>
+
 <details>
     <summary>Vps'ye Dağıt</summary>
     <br>
