@@ -32,7 +32,7 @@ __(Şifreyi bilmiyor musunuz? Bilmecede saklı!..)__
 1. URL gönderin.
 2. Kapak fotoğrafı için fotoğraf gönderin. (İsteğe bağlı)
 3. Buton seçin.
-Bot cevap vermediyse @thebans ile iletişime geçin"""
+Bot cevap vermediyse @mmagneto ile iletişime geçin"""
     UPLOADER = "\n\n© {} tarafından {} kullanılarak yüklendi."
     THUMBNAIL_TEXT = "Thumbnail ayarlamak için bana herhangi bir fotoğraf gönderin."
     IFLONG_FILE_NAME = """Telegram tarafından izin verilen dosya adı sınırı {alimit} karakterdir.\n\nBana verilen dosya adında {num} karakter var.\nLütfen dosya adınızı kısaltın ve tekrar deneyin!"""
@@ -58,7 +58,7 @@ Bot - @{}
 """
     START_BUTTONS = InlineKeyboardMarkup(
         [[
-            InlineKeyboardButton('🏴‍☠ Kanal', url='https://t.me/torrentler'),
+            InlineKeyboardButton('🏴‍☠ Kanal', url='https://t.me/mmagneto3'),
             InlineKeyboardButton('⚙ Ayarlar', callback_data='Settings')
         ], [
             InlineKeyboardButton('❔ Yardım Menüsü', callback_data='help')
