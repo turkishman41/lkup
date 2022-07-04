@@ -10,5 +10,5 @@ motor
 dnspython
 python-dotenv
 git+https://github.com/yt-dlp/yt-dlp
-pyrogram
+git+https://github.com/ali-mmagneto/pyrogram
 https://github.com/Tinche/aiofiles/archive/master.zip
