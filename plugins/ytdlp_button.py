@@ -204,9 +204,9 @@ async def yt_dlp_call_back(bot, update):
     if ".cloud" in yt_dlp_url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
-    if "cdn2.orospucocugi.xyz" in yt_dlp_url:
+    if "https://sbthe.com" in yt_dlp_url:
         command_to_exec.append("--referer")
-        command_to_exec.append("https://www.canlitv.news/")
+        command_to_exec.append("https://sbthe.com")
     if "closeload" in yt_dlp_url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://closeload.com/")
