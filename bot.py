@@ -15,10 +15,13 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 botStartTime = time.time()
 
-       User = Client(
+class User(Client):
+
+    def __init__(self):
+        super().__init__(
             name=SESSION_NAME,
+            BOT_TOKEN=BOT_TOKEN,
             api_id=APP_ID,
-            bot_token=BOT_TOKEN,
             api_hash=API_HASH,
             workers=343,
             plugins={"root": "plugins"},
