@@ -16,7 +16,7 @@ LOGGER = logging.getLogger(__name__)
 botStartTime = time.time()
 
        User =Client(
-            name=urbot,
+            name=SESSION_NAME,
             api_id=APP_ID,
             bot_token=BOT_TOKEN,
             api_hash=API_HASH,
