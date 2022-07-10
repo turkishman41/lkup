@@ -19,7 +19,7 @@ class User(Client):
 
     def __init__(self):
         super().__init__(
-            name=STRING_SESSION,
+            name=SESSION_NAME,
             api_id=APP_ID,
             api_hash=API_HASH,
             workers=343,
