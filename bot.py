@@ -54,5 +54,5 @@ class User(Client):
         LOGGER.info(msg="App Stopped.")
         exit()
 
-app = Bot()
+app = User()
 app.run()
