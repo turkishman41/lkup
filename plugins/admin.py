@@ -5,7 +5,6 @@ import math
 import requests
 import heroku3
 
-from bot import Bot
 from config import HEROKU_APP_NAME, HEROKU_API_KEY
 
 from pyrogram import filters
@@ -19,7 +18,7 @@ from functions.progress import humanbytes
 from plugins.broadcast import broadcast_handler
 
 
-@Bot.on_message(filters.command("status") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("status") & filters.user(OWNER_ID))
 async def status_handler(_, m: Message):
     msg = await m.reply_text(text="`İşleniyor...`")
     heroku_api = "https://api.heroku.com"
@@ -99,7 +98,7 @@ async def status_handler(_, m: Message):
         await msg.edit(f"**Error:** `{e}`")
 
 
-@Bot.on_message(filters.command("reset") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("reset") & filters.user(OWNER_ID))
 async def restart(_, m: Message):
     restart_msg = await m.reply_text(text="`İşleniyor...`")
     await restart_msg.edit("`Yeniden başlatılıyor! Lütfen bekle...`")
