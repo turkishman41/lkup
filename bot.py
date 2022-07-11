@@ -20,9 +20,9 @@ class Bot(Client):
     def __init__(self):
         super().__init__(
             name=SESSION_NAME,
-            BOT_TOKEN=BOT_TOKEN,
             api_id=APP_ID,
             api_hash=API_HASH,
+            bot_token=BOT_TOKEN,
             workers=343,
             plugins={"root": "plugins"},
             sleep_threshold=5,
@@ -31,6 +31,9 @@ class Bot(Client):
     async def start(self):
         if not os.path.isdir(DOWNLOAD_LOCATION): os.makedirs(DOWNLOAD_LOCATION)
         await super().start()
+        me = await self.get_me()
+        self.username = '@' + me.username
+        LOGGER.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}. Premium {me.is_premium}.")
         if OWNER_ID != 0:
             try:
                 await self.send_message(text="Karanlığın küllerinden yeniden doğdum.",
