@@ -22,7 +22,6 @@ id_pattern = re.compile(r'^.\d+$')
 
 
 # get a token from @BotFather
-STRING_SESSION = environ.get("STRING_SESSION", "")
 BOT_TOKEN = environ.get("BOT_TOKEN", "") 
 
 # The Telegram API things
