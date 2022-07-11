@@ -3,6 +3,7 @@ from pyrogram import Client, filters
 import datetime
 import time
 from database.database import db
+from bot import Bot
 from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 from pyrogram.errors import FloodWait, InputUserDeactivated, UserIsBlocked, PeerIdInvalid, UserNotParticipant
 from pyrogram.enums import ChatMemberStatus
@@ -48,7 +49,7 @@ async def broadcast_messages(bot, user_id, message):
         return False, "Error"
 
 
-@Client.on_message(filters.command(["broadcast", "yay"]) & filters.user(OWNER_ID) & filters.reply)
+@Bot.on_message(filters.command(["broadcast", "yay"]) & filters.user(OWNER_ID) & filters.reply)
 async def broadcast_handler(bot, message):
     message = message.reply_to_message
     await message.reply(
@@ -65,7 +66,7 @@ async def broadcast_handler(bot, message):
     return
 
 
-@Client.on_callback_query(filters.user(OWNER_ID) & filters.regex(r'^bdcast+.*$'))
+@Bot.on_callback_query(filters.user(OWNER_ID) & filters.regex(r'^bdcast+.*$'))
 async def broadcast_confrm(bot, query):
     await query.answer()
     bdcast_type = query.data.split("#")[1]
