@@ -13,7 +13,6 @@ from pyrogram import Client, filters
 from pyrogram.enums import MessageEntityType, ChatAction
 from config import AUTH_CHANNEL, LOG_CHANNEL, DOWNLOAD_LOCATION, CHUNK_SIZE, DEF_THUMB_NAIL_VID_S, HTTP_PROXY
 
-from bot import Bot
 from functions.progress import humanbytes
 from functions.aiohttp import DownLoadFile
 from functions.forcesub import handle_force_subscribe
@@ -23,8 +22,8 @@ from database.database import db
 
 
 
-@Bot.on_message(filters.regex(pattern=URL_REGEX))
-@Bot.on_edited_message(filters.regex(pattern=URL_REGEX))
+@Client.on_message(filters.regex(pattern=URL_REGEX))
+@Client.on_edited_message(filters.regex(pattern=URL_REGEX))
 async def echo(bot, update):
     if LOG_CHANNEL:
         try:
