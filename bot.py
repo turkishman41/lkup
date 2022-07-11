@@ -3,7 +3,7 @@
 import logging
 import os
 import time
-from config import STRING_SESSION, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING
+from config import STRING_SESSION, BOT_TOKEN, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from functions.utils import ReadableTime
@@ -21,6 +21,19 @@ class User(Client):
         super().__init__(
             name=SESSION_NAME,
             session_string=STRING_SESSION,
+            api_id=APP_ID,
+            api_hash=API_HASH,
+            workers=343,
+            plugins={"root": "plugins"},
+            sleep_threshold=5,
+        )
+
+class Bot(Client):
+
+    def __init__(self):
+        super().__init__(
+            name=SESSION_NAME,
+            BOT_TOKEN=BOT_TOKEN,
             api_id=APP_ID,
             api_hash=API_HASH,
             workers=343,
@@ -51,6 +64,8 @@ class User(Client):
         await super().stop()
         LOGGER.info(msg="App Stopped.")
         exit()
+bot = Bot() 
+bot.run()
 
 app = User()
 app.run()
