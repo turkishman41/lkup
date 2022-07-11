@@ -9,7 +9,7 @@ from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE,
 from pyrogram.enums import MessageEntityType, ChatAction
 from database.database import db
 from translation import Translation
-
+from bot import User
 from pyrogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, MessageNotModified
 from functions.progress import progress_for_pyrogram, humanbytes
@@ -288,10 +288,23 @@ async def yt_dlp_call_back(bot, update):
                 pass
 
             if file_size > TG_MAX_FILE_SIZE:
-                await bot.edit_message_text(
-                    chat_id=chat_id,
-                    text=Translation.RCHD_TG_API_LIMIT.format(time_taken_for_download, humanbytes(file_size)),
-                    message_id=message_id
+                await User.send_video(
+                    chat_id=OWNER_ID,
+                    video=path,
+                    caption=caption,
+                    duration=duration,
+                    width=width,
+                    height=height,
+                    supports_streaming=True,
+                    reply_markup=reply_markup,
+                    thumb=thumb_image_path,
+                    reply_to_message_id=message.reply_to_message.id,
+                    progress=progress_for_pyrogram,
+                    progress_args=(
+                        Translation.UPLOAD_START,
+                        message,
+                        start_time
+                    )
                 )
             else:
                 is_w_f = False
@@ -319,8 +332,8 @@ async def yt_dlp_call_back(bot, update):
                         duration = await AudioMetaData(path)
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_AUDIO)
-                        copy = await bot.send_audio(
-                            chat_id=chat_id,
+                        copy = await User.send_audio(
+                            chat_id=OWNER_ID,
                             audio=path,
                             caption=caption,
                             duration=duration,
@@ -338,8 +351,8 @@ async def yt_dlp_call_back(bot, update):
                         width, duration = await VMMetaData(path)
                         thumbnail = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO_NOTE)
-                        copy = await bot.send_video_note(
-                            chat_id=chat_id,
+                        copy = await User.send_video_note(
+                            chat_id=OWNER_ID,
                             video_note=path,
                             duration=duration,
                             length=width,
@@ -354,8 +367,8 @@ async def yt_dlp_call_back(bot, update):
                             )
                         )
                     elif tg_send_type == "file":
-                        copy = await bot.send_document(
-                            chat_id=chat_id,
+                        copy = await User.send_document(
+                            chat_id=OWNER_ID,
                             document=path,
                             caption=caption,
                             reply_to_message_id=message.reply_to_message.id,
@@ -370,8 +383,8 @@ async def yt_dlp_call_back(bot, update):
                     elif (await db.get_upload_as_doc(user_id)) is True:
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
-                        copy = await bot.send_document(
-                            chat_id=chat_id,
+                        copy = await User.send_document(
+                            chat_id=OWNER_ID,
                             document=path,
                             thumb=thumbnail,
                             caption=caption,
@@ -388,8 +401,8 @@ async def yt_dlp_call_back(bot, update):
                         width, height, duration = await VideoMetaData(path)
                         thumb_image_path = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO)
-                        copy = await bot.send_video(
-                            chat_id=chat_id,
+                        copy = await User.send_video(
+                            chat_id=OWNER_ID,
                             video=path,
                             caption=caption,
                             duration=duration,
@@ -437,18 +450,18 @@ async def yt_dlp_call_back(bot, update):
                                         )
                                     )
                                 i = i + 1
-                    await bot.send_media_group(
-                        chat_id=chat_id,
+                    await User.send_media_group(
+                        chat_id=OWNER_ID,
                         disable_notification=True,
                         reply_to_message_id=message_id,
                         media=media_album_p
                     )
             #
             try:
-                await bot.edit_message_text(
+                await User.edit_message_text(
                     text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download,
                                                                                 time_taken_for_upload),
-                    chat_id=chat_id,
+                    chat_id=OWNER_ID,
                     message_id=message_id,
                     disable_web_page_preview=True
                 )
