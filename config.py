@@ -22,7 +22,7 @@ id_pattern = re.compile(r'^.\d+$')
 
 
 # get a token from @BotFather
-BOT_TOKEN = environ.get("BOT_TOKEN", "") 
+BOT_TOKEN = environ.get("BOT_TOKEN", "")
 
 # The Telegram API things
 # Get these values from my.telegram.org
@@ -45,7 +45,7 @@ LOG_CHANNEL = int(log_channel) if log_channel else None
 
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 5000000000
-TG_MAX_FILE_SIZE =  2294967269
+TG_MAX_FILE_SIZE =  4294967269
 
 # chunk size that should be used with requests
 CHUNK_SIZE = int(environ.get("CHUNK_SIZE", 128))
@@ -87,6 +87,5 @@ PASS = password.upper() if password else None
 
 # Other
 SEND_LOGS_WHEN_DYING = str(environ.get("SEND_LOGS_WHEN_DYING", "True")).lower() == 'true'
-
 
 
