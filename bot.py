@@ -31,9 +31,6 @@ class User(Client):
     async def start(self):
         if not os.path.isdir(DOWNLOAD_LOCATION): os.makedirs(DOWNLOAD_LOCATION)
         await super().start()
-        me = await self.get_me()
-        self.username = '@' + me.username
-        LOGGER.info(f"{me.first_name} with for Pyrogram v{__version__} (Layer {layer}) started on {me.username}. Premium {me.is_premium}.")
         if OWNER_ID != 0:
             try:
                 await self.send_message(text="Karanlığın küllerinden yeniden doğdum.",
