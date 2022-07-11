@@ -15,19 +15,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 botStartTime = time.time()
 
-class User(Client):
-
-    def __init__(self):
-        super().__init__(
-            name=SESSION_NAME,
-            session_string=STRING_SESSION,
-            api_id=APP_ID,
-            api_hash=API_HASH,
-            workers=343,
-            plugins={"root": "plugins"},
-            sleep_threshold=5,
-        )
-
 class Bot(Client):
 
     def __init__(self):
@@ -64,8 +51,6 @@ class Bot(Client):
         await super().stop()
         LOGGER.info(msg="App Stopped.")
         exit()
-bot = Bot() 
-bot.run()
 
-app = User()
+app = Bot()
 app.run()
