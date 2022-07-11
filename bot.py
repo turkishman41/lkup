@@ -3,7 +3,7 @@
 import logging
 import os
 import time
-from config import PHONE_NUMBER, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING
+from config import STRING_SESSION, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from functions.utils import ReadableTime
@@ -20,7 +20,7 @@ class User(Client):
     def __init__(self):
         super().__init__(
             name=SESSION_NAME,
-            phone_number=PHONE_NUMBER,
+            session_string=STRING_SESSION,
             api_id=APP_ID,
             api_hash=API_HASH,
             workers=343,
