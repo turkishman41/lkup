@@ -1,7 +1,7 @@
 from config import OWNER_ID
 from pyrogram.types import Message
 from pyrogram import Client, filters
-
+from bot import Bot
 import logging
 
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
@@ -10,7 +10,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 
 
-@Client.on_message(filters.command('log') & filters.user(OWNER_ID))
+@Bot.on_message(filters.command('log') & filters.user(OWNER_ID))
 async def log_handler(c: Client, m: Message):
     with open('log.txt', 'rb') as f:
         try:
