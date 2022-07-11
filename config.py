@@ -46,7 +46,7 @@ LOG_CHANNEL = int(log_channel) if log_channel else None
 
 # Telegram maximum file upload size
 MAX_FILE_SIZE = 5000000000
-TG_MAX_FILE_SIZE =  4294967269
+TG_MAX_FILE_SIZE =  2294967269
 
 # chunk size that should be used with requests
 CHUNK_SIZE = int(environ.get("CHUNK_SIZE", 128))
