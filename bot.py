@@ -3,7 +3,7 @@
 import logging
 import os
 import time
-from config import STRING_SESSION, BOT_TOKEN, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING
+from config import BOT_TOKEN, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from functions.utils import ReadableTime
