@@ -55,17 +55,5 @@ class Bot(Client):
         LOGGER.info(msg="App Stopped.")
         exit()
 
-class ubot(Client):
-    
-    def __init__(self):
-        super().__init__(
-            name='Userbot',
-            api_id=APP_ID,
-            api_hash=API_HASH,
-            session_string=STRING_SESSION
-        ) 
-
 app = Bot()
 app.run()
-
-ubot.run()
