@@ -27,9 +27,6 @@ async def start_handler(c: Client, m: "types.Message"):
 
 @Client.on_message(filters.private & filters.command("pre"))
 async def start_handler(c: Client, m: "types.Message"):
-    try:
-        preknl = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
-    except Exception as e:
     reply_markup=InlineKeyboardMarkup(
                 [
                     [
@@ -40,6 +37,9 @@ async def start_handler(c: Client, m: "types.Message"):
             parse_mode=ParseMode.HTML, 
             protect_content=True
         )
+    try:
+        preknl = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
+    except Exception as e:
     try:
     await m.reply_text(
         text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
