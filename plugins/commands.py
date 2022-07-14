@@ -30,13 +30,13 @@ async def start_handler(c: Client, m: "types.Message"):
 @Client.on_message(filters.private & filters.command("pre"))
 async def start_handler(c: Client, m: "types.Message"):
     try:
-        forcsub = await client.create_chat_invite_link(PRE_LOG, member_limit=1)
+        forcsub = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
     except Exception as e:
         print(e)
         return
     try:
-        await client.send_message(
-            chat_id=message.from_user.id,
+        await c.send_message(
+            chat_id=mi.from_user.id,
             text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
             reply_markup=InlineKeyboardMarkup(
                 [
