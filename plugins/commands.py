@@ -25,33 +25,6 @@ async def start_handler(c: Client, m: "types.Message"):
         reply_markup=Translation.START_BUTTONS
     )
 
-
-
-@Client.on_message(filters.private & filters.command("pre"))
-async def start_handler(c: Client, m: "types.Message"):
-    try:
-        forcsub = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
-    except Exception as e:
-        print(e)
-        return
-    try:
-        await m.reply_text(
-            chat_id=m.from_user.id,
-            text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
-            reply_markup=InlineKeyboardMarkup(
-                [
-                    [
-                        InlineKeyboardButton("Pre Kanal", url=forcsub.invite_link)
-                    ]
-                ]
-            ),
-            parse_mode=ParseMode.HTML, 
-            protect_content=True
-        )
-    except Exception as e:
-        print(e)
-        return
-           
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
 async def delete_thumb_handler(c: Client, m: "types.Message"):
     if not m.from_user:
