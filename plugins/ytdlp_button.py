@@ -421,6 +421,7 @@ async def yt_dlp_call_back(bot, update):
                     )
                 except MessageNotModified:
                     pass
+                return
             else:
                 is_w_f = False
                 images = await generate_screen_shots(
