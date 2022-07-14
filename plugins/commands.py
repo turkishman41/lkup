@@ -30,18 +30,26 @@ async def start_handler(c: Client, m: "types.Message"):
 @Client.on_message(filters.private & filters.command("pre"))
 async def start_handler(c: Client, m: "types.Message"):
     try:
-        preknl = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
-    except Exception as e:
-        reply_markup=InlineKeyboardMarkup(
-                    [[InlineKeyboardButton("Pre Kanal", url=preknl.invite_link)]])
+        forcsub = await client.create_chat_invite_link(PRE_LOG, member_limit=1)
+    except FloodWait as e:
+        await asyncio.sleep(e.x)
+        return
     try:
-        await m.reply_text(
+        await client.send_message(
+            chat_id=message.from_user.id,
             text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
-            reply_markup=reply_markup
+            reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Pre Kanal", url=forcsub.invite_link)
+                    ]
+                ]
+            ),
+            parse_mode=ParseMode.HTML, 
+            protect_content=True
         )
-    except Exception as f:
-        Logger.info(f)
-
+        return
+           
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
 async def delete_thumb_handler(c: Client, m: "types.Message"):
     if not m.from_user:
