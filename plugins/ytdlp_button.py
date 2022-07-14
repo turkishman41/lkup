@@ -408,13 +408,13 @@ async def yt_dlp_call_back(bot, update):
                 except MessageNotModified:
                     pass
                 try:
-                await bot.edit_message_text(
-                    text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS_PRE.format(time_taken_for_download,
+                    await bot.edit_message_text(
+                        text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS_PRE.format(time_taken_for_download,
                                                                                 time_taken_for_upload),
-                    chat_id=chat_id,
-                    message_id=message_id,
-                    disable_web_page_preview=True
-                )
+                        chat_id=chat_id,
+                        message_id=message_id,
+                        disable_web_page_preview=True
+                    )
                 except MessageNotModified:
                     pass
             else:
@@ -538,13 +538,13 @@ async def yt_dlp_call_back(bot, update):
                 except MessageNotModified:
                     pass
                 try:
-                await bot.edit_message_text(
-                    text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download,
+                    await bot.edit_message_text(
+                        text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download,
                                                                                 time_taken_for_upload),
-                    chat_id=chat_id,
-                    message_id=message_id,
-                    disable_web_page_preview=True
-                )
+                        chat_id=chat_id,
+                        message_id=message_id,
+                        disable_web_page_preview=True
+                    )
                 except MessageNotModified:
                     pass
 
