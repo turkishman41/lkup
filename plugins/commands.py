@@ -43,7 +43,6 @@ async def start_handler(c: Client, m: "types.Message"):
     try:
         await m.reply_text(
             text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
-            chat_id=chat_id, 
             reply_markup=reply_markup
         )
     except Exception as f:
