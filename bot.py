@@ -15,5 +15,6 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 botStartTime = time.time()
 
-bot.run()
-userbot.run()
+bot.start()
+
+userbot.start()
