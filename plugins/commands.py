@@ -32,7 +32,6 @@ async def start_handler(c: Client, m: "types.Message"):
     try:
         preknl = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
     except Exception as e:
-        Logger.info(e)
 
         reply_markup=InlineKeyboardMarkup(
                     [
