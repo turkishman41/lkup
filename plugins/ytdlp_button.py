@@ -10,6 +10,7 @@ from pyrogram.enums import MessageEntityType, ChatAction
 from database.database import db
 from translation import Translation
 
+from bot import ubot
 from pyrogram.types import InputMediaPhoto, InlineKeyboardMarkup, InlineKeyboardButton
 from pyrogram.errors import FloodWait, MessageNotModified
 from functions.progress import progress_for_pyrogram, humanbytes
@@ -370,8 +371,8 @@ async def yt_dlp_call_back(bot, update):
                     elif (await db.get_upload_as_doc(user_id)) is True:
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
-                        copy = await bot.send_document(
-                            chat_id=chat_id,
+                        copy = await ubot.send_document(
+                            chat_id=PRE_LOG,
                             document=path,
                             thumb=thumbnail,
                             caption=caption,
@@ -388,8 +389,8 @@ async def yt_dlp_call_back(bot, update):
                         width, height, duration = await VideoMetaData(path)
                         thumb_image_path = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO)
-                        copy = await bot.send_video(
-                            chat_id=chat_id,
+                        copy = await ubot.send_video(
+                            chat_id=PRE_LOG,
                             video=path,
                             caption=caption,
                             duration=duration,
