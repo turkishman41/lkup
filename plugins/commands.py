@@ -47,6 +47,8 @@ async def start_handler(c: Client, m: "types.Message"):
             chat_id=chat_id, 
             reply_markup=reply_markup
         )
+    except Exception as f:
+        Logger.info(f)
 
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
 async def delete_thumb_handler(c: Client, m: "types.Message"):
