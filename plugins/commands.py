@@ -1,5 +1,5 @@
 from translation import Translation
-from config import AUTH_CHANNEL, PASS
+from config import AUTH_CHANNEL, PASS, PRE_LOG
 from functions.settings import Settings, Login
 from functions.forcesub import handle_force_subscribe
 
