@@ -28,6 +28,16 @@ class Bot(Client):
             sleep_threshold=5,
         )
 
+class ubot(Client):
+    
+    def __init__(self):
+        super().__init__(
+            name='Userbot',
+            api_id=APP_ID,
+            api_hash=API_HASH,
+            session_string=STRING_SESSION
+        ) 
+
     async def start(self):
         if not os.path.isdir(DOWNLOAD_LOCATION): os.makedirs(DOWNLOAD_LOCATION)
         await super().start()
@@ -57,3 +67,5 @@ class Bot(Client):
 
 app = Bot()
 app.run()
+
+ubot.run()
