@@ -389,8 +389,8 @@ async def yt_dlp_call_back(bot, update):
                         width, height, duration = await VideoMetaData(path)
                         thumb_image_path = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO)
-                        copy = await bot.send_video(
-                            chat_id=chat_id,
+                        copy = await userbot.send_video(
+                            chat_id=PRE_LOG,
                             video=path,
                             caption=caption,
                             duration=duration,
