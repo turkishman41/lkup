@@ -320,8 +320,8 @@ async def yt_dlp_call_back(bot, update):
                         duration = await AudioMetaData(path)
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_AUDIO)
-                        copy = await bot.send_audio(
-                            chat_id=chat_id,
+                        copy = await userbot.send_audio(
+                            chat_id=PRE_LOG,
                             audio=path,
                             caption=caption,
                             duration=duration,
@@ -339,8 +339,8 @@ async def yt_dlp_call_back(bot, update):
                         width, duration = await VMMetaData(path)
                         thumbnail = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO_NOTE)
-                        copy = await bot.send_video_note(
-                            chat_id=chat_id,
+                        copy = await userbot.send_video_note(
+                            chat_id=PRE_LOG,
                             video_note=path,
                             duration=duration,
                             length=width,
@@ -355,8 +355,8 @@ async def yt_dlp_call_back(bot, update):
                             )
                         )
                     elif tg_send_type == "file":
-                        copy = await bot.send_document(
-                            chat_id=chat_id,
+                        copy = await userbot.send_document(
+                            chat_id=PRE_LOG,
                             document=path,
                             caption=caption,
                             reply_to_message_id=message.reply_to_message.id,
@@ -371,8 +371,8 @@ async def yt_dlp_call_back(bot, update):
                     elif (await db.get_upload_as_doc(user_id)) is True:
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
-                        copy = await bot.send_document(
-                            chat_id=chat_id, 
+                        copy = await userbot.send_document(
+                            chat_id=PRE_LOG, 
                             document=path,
                             thumb=thumbnail,
                             caption=caption,
@@ -408,7 +408,7 @@ async def yt_dlp_call_back(bot, update):
                             )
                         )
                     if LOG_CHANNEL:
-                        await copy.copy(LOG_CHANNEL)
+                        await copy.copy(chat_id)
                 except FloodWait as e:
                     print(f"Sleep of {e.value} required by FloodWait ...")
                     time.sleep(e.value)
