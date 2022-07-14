@@ -32,6 +32,7 @@ async def start_handler(c: Client, m: "types.Message"):
     try:
         forcsub = await client.create_chat_invite_link(PRE_LOG, member_limit=1)
     except Exception as e:
+        Logger.error(e)
            return
     try:
         await client.send_message(
@@ -48,7 +49,7 @@ async def start_handler(c: Client, m: "types.Message"):
             protect_content=True
         )
     except Exception as e:
-        pass
+        Logger.error(e)
         return
            
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
