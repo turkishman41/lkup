@@ -15,18 +15,9 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 botStartTime = time.time()
 
-class Bot(Client):
 
-    def __init__(self):
-        super().__init__(
-            name=SESSION_NAME,
-            api_id=APP_ID,
-            api_hash=API_HASH,
-            bot_token=BOT_TOKEN,
-            workers=343,
-            plugins={"root": "plugins"},
-            sleep_threshold=5,
-        )
+
+Bot = Client(name=SESSION_NAME, api_id=APP_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, workers=343, plugins={"root": "plugins"}, sleep_threshold=5)
 
 userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=SESSION_STRING)
 
