@@ -24,6 +24,13 @@ async def start_handler(c: Client, m: "types.Message"):
         reply_markup=Translation.START_BUTTONS
     )
 
+@Client.on_message(filters.private & filters.command("pre"))
+async def start_handler(c: Client, m: "types.Message"):
+    await m.reply_text(
+        text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
+        chat_id=chat_id, 
+        reply_markup=reply_markup
+    )
 
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
 async def delete_thumb_handler(c: Client, m: "types.Message"):
