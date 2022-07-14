@@ -7,7 +7,7 @@ from datetime import datetime
 
 from bot import userbot
 
-from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE, DEF_WATER_MARK_FILE, PROMO
+from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE, DEF_WATER_MARK_FILE, PROMO, PRE_LOG
 from pyrogram.enums import MessageEntityType, ChatAction
 from database.database import db
 from translation import Translation
@@ -357,7 +357,7 @@ async def yt_dlp_call_back(bot, update):
                         )
                     elif tg_send_type == "file":
                         copy = await userbot.send_document(
-                            chat_id=PRM_LOG,
+                            chat_id=PRE_LOG,
                             document=path,
                             caption=caption,
                             reply_to_message_id=message.reply_to_message.id,
@@ -373,7 +373,7 @@ async def yt_dlp_call_back(bot, update):
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
                         copy = await userbot.send_document(
-                            chat_id=PRM_LOG,
+                            chat_id=PRE_LOG,
                             document=path,
                             thumb=thumbnail,
                             caption=caption,
@@ -391,7 +391,7 @@ async def yt_dlp_call_back(bot, update):
                         thumb_image_path = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO)
                         copy = await userbot.send_video(
-                            chat_id=PRM_LOG,
+                            chat_id=PRE_LOG,
                             video=path,
                             caption=caption,
                             duration=duration,
