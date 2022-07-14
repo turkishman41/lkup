@@ -25,6 +25,8 @@ async def start_handler(c: Client, m: "types.Message"):
         reply_markup=Translation.START_BUTTONS
     )
 
+
+
 @Client.on_message(filters.private & filters.command("pre"))
 async def start_handler(c: Client, m: "types.Message"):
     try:
@@ -32,13 +34,13 @@ async def start_handler(c: Client, m: "types.Message"):
     except Exception as e:
         Logger.info(e)
 
-    reply_markup=InlineKeyboardMarkup(
-                [
+        reply_markup=InlineKeyboardMarkup(
                     [
-                        InlineKeyboardButton("Pre Kanal", url=preknl.invite_link)
+                        [
+                            InlineKeyboardButton("Pre Kanal", url=preknl.invite_link)
+                        ]
                     ]
-                ]
-            )
+                )
     try:
         await m.reply_text(
             text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
