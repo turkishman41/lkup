@@ -4,7 +4,8 @@ from functions.settings import Settings, Login
 from functions.forcesub import handle_force_subscribe
 
 from pyrogram.emoji import *
-from pyrogram import Client, filters, types
+from pyrogram import Client, filters, types, enums
+from pyrogram.types import InlineKeyboardButton, InlineKeyboardMarkup
 
 from database.database import db
 
@@ -26,6 +27,20 @@ async def start_handler(c: Client, m: "types.Message"):
 
 @Client.on_message(filters.private & filters.command("pre"))
 async def start_handler(c: Client, m: "types.Message"):
+    try:
+        preknl = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
+    except Exception as e:
+    reply_markup=InlineKeyboardMarkup(
+                [
+                    [
+                        InlineKeyboardButton("Pre Kanal", url=preknl.invite_link)
+                    ]
+                ]
+            ),
+            parse_mode=ParseMode.HTML, 
+            protect_content=True
+        )
+    try:
     await m.reply_text(
         text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
         chat_id=chat_id, 
