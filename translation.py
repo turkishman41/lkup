@@ -22,7 +22,7 @@ __(Şifreyi bilmiyor musunuz? Bilmecede saklı!..)__
     UPLOAD_START = "Yükleniyor.."
     RCHD_TG_API_LIMIT = "{} saniye içinde İndirildi.\nAlgılanan Dosya Boyutu: {}\nÜzgünüm. Ancak, Telegram API sınırlamaları nedeniyle 2000MB'den büyük dosyaları yükleyemiyorum."
     AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS = "{} saniye içinde İndirildi.\n{} saniye içinde yüklendi."
-    AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS_PRE = "{} saniye içinde İndirildi.\n{} saniye içinde yüklendi.\n Dosyan 2 Gb'ta büyük olduğu için PRE kanala yüklendi PRE kanal'a ulaşmak için /pre komutunu kullan!"
+    AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS_PRE = "{} saniye içinde İndirildi.\n{} saniye içinde yüklendi.\n\nDosyan 2 Gb'tan büyük olduğu için PRE kanala yüklendi PRE kanal'a ulaşmak için /pre komutunu kullan!"
     SAVED_CUSTOM_THUMB_NAIL = "**✔️ Kapak fotoğrafı kaydedildi.**"
     DEL_ETED_CUSTOM_THUMB_NAIL = "**🗑️ Kapak fotoğrafı başarıyla temizlendi.**"
     CUSTOM_CAPTION_UL_FILE = "{}"
