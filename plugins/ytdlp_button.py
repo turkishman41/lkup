@@ -555,6 +555,7 @@ async def yt_dlp_call_back(bot, update):
                     )
                 except MessageNotModified:
                     pass
+                return
 
                 end_two = datetime.now()
                 time_taken_for_upload = (end_two - end_one).seconds
