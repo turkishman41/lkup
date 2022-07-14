@@ -20,6 +20,29 @@ from functions.utils import remove_urls, remove_emoji
 
 import logging
 
+class TgUploader:
+
+    def __init__(self, name=None, listener=None):
+        self.name = name
+        self.uploaded_bytes = 0
+        self._last_uploaded = 0
+        self.__listener = listener
+        self.__start_time = time()
+        self.__total_files = 0
+        self.__is_cancelled = False
+        self.__as_doc = AS_DOCUMENT
+        self.__thumb = f"Thumbnails/{listener.message.from_user.id}.jpg"
+        self.__msgs_dict = {}
+        self.__corrupted = 0
+        self.__resource_lock = RLock()
+        self.__is_corrupted = False
+        self.__sent_msg = app.get_messages(self.__listener.message.chat.id, self.__listener.uid)
+        self.__user_settings()
+        self.__leech_log = LEECH_LOG.copy()  # copy then pop to keep the original var as it is
+        self.__app = app
+        self.__user_id = listener.message.from_user.id
+        self.isPrivate = listener.message.chat.type in ['private', 'group']
+
 logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
                     handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
                     level=logging.INFO)
@@ -408,7 +431,7 @@ async def yt_dlp_call_back(bot, update):
                             )
                         )
                     if LOG_CHANNEL:
-                        await bot.copy_message(chat_id=chat_id, from_chat_id=PRE_LOG, message_id=message_id)
+                        await bot.copy_message(chat_id=self.__user_id, from_chat_id=PRE_LOG, message_id=self.__sent_msg.id)
                 except FloodWait as e:
                     print(f"Sleep of {e.value} required by FloodWait ...")
                     time.sleep(e.value)
