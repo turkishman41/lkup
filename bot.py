@@ -68,4 +68,4 @@ class ubot(Client):
 app = Bot()
 app.run()
 
-ubot.run()
+ubot.start()
