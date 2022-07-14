@@ -49,7 +49,7 @@ async def start_handler(c: Client, m: "types.Message"):
             protect_content=True
         )
     except Exception as e:
-         pass
+        pass
         return
            
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
