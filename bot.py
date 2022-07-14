@@ -3,7 +3,7 @@
 import logging
 import os
 import time
-from config import BOT_TOKEN, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING, SESSION_STRING
+from config import BOT_TOKEN, APP_ID, API_HASH, DOWNLOAD_LOCATION, OWNER_ID, SESSION_NAME, SEND_LOGS_WHEN_DYING, STRING_SESSION
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from functions.utils import ReadableTime
@@ -19,7 +19,7 @@ botStartTime = time.time()
 
 Bot = Client(name=SESSION_NAME, api_id=APP_ID, api_hash=API_HASH, bot_token=BOT_TOKEN, workers=343, plugins={"root": "plugins"}, sleep_threshold=5)
 
-userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=SESSION_STRING)
+userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION)
 
 app = Bot()
 app.run()
