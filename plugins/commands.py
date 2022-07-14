@@ -41,11 +41,11 @@ async def start_handler(c: Client, m: "types.Message"):
         preknl = await c.create_chat_invite_link(PRE_LOG, member_limit=1)
     except Exception as e:
     try:
-    await m.reply_text(
-        text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
-        chat_id=chat_id, 
-        reply_markup=reply_markup
-    )
+        await m.reply_text(
+            text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
+            chat_id=chat_id, 
+            reply_markup=reply_markup
+        )
 
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
 async def delete_thumb_handler(c: Client, m: "types.Message"):
