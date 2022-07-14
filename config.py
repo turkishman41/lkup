@@ -21,8 +21,12 @@ if os.path.exists('config.env'):
 id_pattern = re.compile(r'^.\d+$') 
 
 
-# get a token from @BotFather
+# get a token from @BotFather and A Premium user Sessıon
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
+STRING_SESSION = environ.get("STRING_SESSION", "")
+
+# Where files larger than 2 GB will go
+PRE_LOG = environ.get("PRE_LOG", "") 
 
 # The Telegram API things
 # Get these values from my.telegram.org
