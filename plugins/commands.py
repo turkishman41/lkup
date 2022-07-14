@@ -32,8 +32,7 @@ async def start_handler(c: Client, m: "types.Message"):
     try:
         forcsub = await client.create_chat_invite_link(PRE_LOG, member_limit=1)
     except Exception as e:
-        await asyncio.sleep(e.x)
-        return
+
     try:
         await client.send_message(
             chat_id=message.from_user.id,
