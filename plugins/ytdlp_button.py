@@ -5,7 +5,7 @@ import shutil
 import time
 from datetime import datetime
 
-from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE, DEF_WATER_MARK_FILE, PROMO, PRE_LOG
+from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE, DEF_WATER_MARK_FILE, PROMO, PRE_LOG, userbot
 
 from pyrogram.enums import MessageEntityType, ChatAction
 from database.database import db
