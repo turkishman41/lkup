@@ -407,6 +407,10 @@ async def yt_dlp_call_back(bot, update):
                     time.sleep(e.value)
                 except MessageNotModified:
                     pass
+
+                end_two = datetime.now()
+                time_taken_for_upload = (end_two - end_one).seconds
+                media_album_p = []
                 try:
                     await bot.edit_message_text(
                         text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS_PRE.format(time_taken_for_download,
@@ -537,6 +541,9 @@ async def yt_dlp_call_back(bot, update):
                     time.sleep(e.value)
                 except MessageNotModified:
                     pass
+                end_two = datetime.now()
+                time_taken_for_upload = (end_two - end_one).seconds
+                media_album_p = []
                 try:
                     await bot.edit_message_text(
                         text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download,
