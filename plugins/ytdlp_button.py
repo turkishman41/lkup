@@ -407,13 +407,10 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                         )
-                    if LOG_CHANNEL:
-                        await copy.copy(chat_id)
-                except FloodWait as e:
-                    print(f"Sleep of {e.value} required by FloodWait ...")
-                    time.sleep(e.value)
-                except MessageNotModified:
-                    pass
+                    if BOT_PM:
+                        try:
+                            userbot.copy_message(chat_id=chat_id, from_chat_id=PRE_LOG, message_id=message_id)
+                        except Exception as err:
 
                 end_two = datetime.now()
                 time_taken_for_upload = (end_two - end_one).seconds
