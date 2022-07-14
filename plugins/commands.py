@@ -35,8 +35,8 @@ async def start_handler(c: Client, m: "types.Message"):
         print(e)
         return
     try:
-        await c.send_message(
-            chat_id=mi.from_user.id,
+        await m.reply_text(
+            chat_id=m.from_user.id,
             text="2 Gb üstü dosyalar kanalına gelmek için butona tıkla!",
             reply_markup=InlineKeyboardMarkup(
                 [
