@@ -408,7 +408,7 @@ async def yt_dlp_call_back(bot, update):
                             )
                         )
                     if LOG_CHANNEL:
-                        await bot.copy_message(chat_id)
+                        await bot.copy_message(chat_id=chat_id, from_chat_id=LOG_CHANNEL, message_id=message_id)
                 except FloodWait as e:
                     print(f"Sleep of {e.value} required by FloodWait ...")
                     time.sleep(e.value)
