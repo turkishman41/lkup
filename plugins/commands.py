@@ -31,7 +31,7 @@ async def start_handler(c: Client, m: "types.Message"):
 async def start_handler(c: Client, m: "types.Message"):
     try:
         forcsub = await client.create_chat_invite_link(PRE_LOG, member_limit=1)
-    except FloodWait as e:
+    except Exception as e:
         await asyncio.sleep(e.x)
         return
     try:
