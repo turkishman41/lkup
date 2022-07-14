@@ -7,7 +7,6 @@ from datetime import datetime
 
 from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE, DEF_WATER_MARK_FILE, PROMO, PRE_LOG
 
-from bot import app, ubot
 from pyrogram.enums import MessageEntityType, ChatAction
 from database.database import db
 from translation import Translation
@@ -390,7 +389,7 @@ async def yt_dlp_call_back(bot, update):
                         width, height, duration = await VideoMetaData(path)
                         thumb_image_path = await VideoThumb(bot, update, duration, path, random)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_VIDEO)
-                        copy = await app.send_video(
+                        copy = await bot.send_video(
                             chat_id=chat_id,
                             video=path,
                             caption=caption,
