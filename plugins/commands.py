@@ -48,6 +48,8 @@ async def start_handler(c: Client, m: "types.Message"):
             parse_mode=ParseMode.HTML, 
             protect_content=True
         )
+     except Exception as e:
+         pass
         return
            
 @Client.on_message(filters.private & filters.command(["ayarlar", "settings"]))
