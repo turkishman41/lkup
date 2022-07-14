@@ -4,6 +4,7 @@ from os import environ
 from dotenv import load_dotenv
 from pyrogram import Client, __version__
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
+from pyrogram import Client, enums
 
 import logging
 
@@ -25,6 +26,13 @@ id_pattern = re.compile(r'^.\d+$')
 # get a token from @BotFather and A Premium user Sessıon
 BOT_TOKEN = environ.get("BOT_TOKEN", "")
 STRING_SESSION = environ.get("STRING_SESSION", "")
+if len(STRING_SESSION) == 0:
+        raise KeyError
+userbot = Client(name='userbot', api_id=API_ID, api_hash=API_HASH, session_string=STRING_SESSION, parse_mode=enums.ParseMode.HTML)
+    if not userbot:
+        LOGGER.error("Cannot initialized User Session. Please regenerate STRING_SESSION")
+    else:
+        userbot.start()
 
 # Where files larger than 2 GB will go
 PRE_LOG = environ.get("PRE_LOG", "") 
