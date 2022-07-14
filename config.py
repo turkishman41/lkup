@@ -98,5 +98,3 @@ Bot = Client(name=SESSION_NAME, api_id=APP_ID, api_hash=API_HASH, bot_token=BOT_
 userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION)
 
 app = Bot()
-
-app.run()
