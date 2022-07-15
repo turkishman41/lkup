@@ -287,7 +287,7 @@ async def yt_dlp_call_back(bot, update):
             except:
                 pass
 
-            if file_size > 2000000000:
+            if file_size > 211000000:
                 is_w_f = False
                 images = await generate_screen_shots(
                     path,
