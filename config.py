@@ -34,8 +34,7 @@ PRE_LOG = environ.get("PRE_LOG", "")
 APP_ID = int(environ.get("APP_ID", 1234))
 API_HASH = environ.get("API_HASH", "")
 STRING_SESSION = environ.get("STRING_SESSION", "")
-if len(STRING_SESSION) == 0:
-        raise KeyError
+
 userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION, parse_mode=enums.ParseMode.HTML)
 userbot.start()
 
