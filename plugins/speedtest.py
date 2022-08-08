@@ -5,13 +5,12 @@ import wget
 from pyrogram import filters
 from pyrogram.types import Message
 
-from bot import Bot
 from config import ADMINS
 
 
-@Bot.on_message(filters.command("speedtest") & filters.user(ADMINS))
-async def run_speedtest(client: Bot, message: Message):
-    hiztesti = await message.reply_text("`⚡️ Hız Testi Yapılıyor`")
+@Client.on_message(filters.command("speedtest") & filters.user(ADMINS))
+async def run_speedtest(c: Client, m: Message):
+    hiztesti = await m.reply_text("`⚡️ Hız Testi Yapılıyor`")
     try:
         test = speedtest.Speedtest()
         test.get_best_server()
@@ -38,7 +37,7 @@ async def run_speedtest(client: Bot, message: Message):
 <b>Ülke:</b> {result['server']['country']}, {result['server']['cc']}
 <b>Sponsor:</b> {result['server']['sponsor']}
 ⚡️ <b>Ping:</b> {result['ping']}"""
-    msg = await client.send_photo(
+    msg = await c.send_photo(
         chat_id=chat_id, photo=path, caption=sonuccaption
     )
     os.remove(path)
