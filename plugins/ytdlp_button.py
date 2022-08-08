@@ -287,7 +287,7 @@ async def yt_dlp_call_back(bot, update):
             except:
                 pass
 
-            if file_size > 211000000:
+            if file_size > 2093796556:
                 is_w_f = False
                 images = await generate_screen_shots(
                     path,
@@ -407,21 +407,7 @@ async def yt_dlp_call_back(bot, update):
                     time.sleep(e.value)
                 except MessageNotModified:
                     pass
-
-                end_two = datetime.now()
-                time_taken_for_upload = (end_two - end_one).seconds
-                media_album_p = []
-                try:
-                    await bot.edit_message_text(
-                        text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS_PRE.format(time_taken_for_download,
-                                                                                time_taken_for_upload),
-                        chat_id=chat_id,
-                        message_id=message_id,
-                        disable_web_page_preview=True
-                    )
-                except MessageNotModified:
-                    pass
-                return
+                    return
             else:
                 is_w_f = False
                 images = await generate_screen_shots(
