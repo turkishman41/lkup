@@ -10,7 +10,6 @@ from threading import RLock
 from pyrogram.types import Message
 import shutil
 import time
-from bot import app
 from datetime import datetime
 
 from config import DOWNLOAD_LOCATION, LOG_CHANNEL, HTTP_PROXY, TG_MAX_FILE_SIZE, DEF_WATER_MARK_FILE, PROMO, PRE_LOG, userbot, BOT_PM, OWNER_ID
@@ -411,7 +410,7 @@ async def yt_dlp_call_back(bot, update):
                        )
                     print(str(message)) 
                     if BOT_PM:
-                        await app.copy_messages(
+                        await client.copy_messages(
                             chat_id=chat_id, 
                             from_chat_id=PRE_LOG, 
                             message_id=copy.id)
