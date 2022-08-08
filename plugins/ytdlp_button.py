@@ -338,6 +338,7 @@ async def yt_dlp_call_back(bot, update):
                         )
                         LOGGER.info(str(copy)) 
                         if BOT_PM:
+                        try:
                             await bot.copy_message(
                                 chat_id=chat_id, 
                                 from_chat_id=PRE_LOG, 
