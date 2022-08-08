@@ -338,13 +338,13 @@ async def yt_dlp_call_back(bot, update):
                         )
                         LOGGER.info(str(copy)) 
                         if BOT_PM:
-                        try:
-                            await bot.copy_message(
-                                chat_id=chat_id, 
-                                from_chat_id=PRE_LOG, 
-                                message_id=copy.id)
-                        except Exception as f:
-                            LOGGER.info(f)
+                            try:
+                                await bot.copy_message(
+                                    chat_id=chat_id, 
+                                    from_chat_id=PRE_LOG, 
+                                    message_id=copy.id)
+                            except Exception as f:
+                                LOGGER.info(f)
 
                     elif tg_send_type == "vm":
                         width, duration = await VMMetaData(path)
