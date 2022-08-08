@@ -38,7 +38,7 @@ async def run_speedtest(c: Client, m: Message):
 <b>Sponsor:</b> {result['server']['sponsor']}
 ⚡️ <b>Ping:</b> {result['ping']}"""
     msg = await c.send_photo(
-        chat_id=message.chat.id, photo=hiztestifoto, caption=sonuccaption
+        chat_id=m.chat.id, photo=hiztestifoto, caption=sonuccaption
     )
     os.remove(hiztestifoto)
     await hiztesti.delete()
