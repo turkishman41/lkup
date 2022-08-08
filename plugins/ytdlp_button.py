@@ -429,12 +429,11 @@ async def yt_dlp_call_back(bot, update):
                             )
                        ) 
                     if BOT_PM:
-                        try:
-                            bot.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
-                        except Exception as err:
-                            await bot.send_message(OWNER_ID, f"Failed To Send Video in PM:\n{err}")
-                    if LOG_CHANNEL:
                         await copy.copy(chat_id)
+                except Exception as f:
+                    bot.send_message(OWNER_ID, f"{f}") 
+                    if LOG_CHANNEL:
+                        await copy.copy(LOG_CHANNEL)
                 except FloodWait as e:
                     print(f"Sleep of {e.value} required by FloodWait ...")
                     time.sleep(e.value)
