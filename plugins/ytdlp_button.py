@@ -411,7 +411,7 @@ async def yt_dlp_call_back(bot, update):
                     if BOT_PM:
                         await bot.copy_messages(chat_id, PRE_LOG, copy.id)
                 except Exception as f:
-                    bot.send_message(OWNER_ID, f"{f}") 
+                    LOGGER.info(f)
                     if LOG_CHANNEL:
                         await copy.copy(LOG_CHANNEL)
                 except FloodWait as e:
