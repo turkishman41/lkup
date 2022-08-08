@@ -336,6 +336,14 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                         )
+                    LOGGER.info(str(copy)) 
+                    if BOT_PM:
+                        await bot.copy_message(
+                            chat_id=chat_id, 
+                            from_chat_id=PRE_LOG, 
+                            message_id=copy.id)
+                except Exception as f:
+                    LOGGER.info(f)
                     elif tg_send_type == "vm":
                         width, duration = await VMMetaData(path)
                         thumbnail = await VideoThumb(bot, update, duration, path, random)
@@ -355,6 +363,14 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                         )
+                    LOGGER.info(str(copy)) 
+                    if BOT_PM:
+                        await bot.copy_message(
+                            chat_id=chat_id, 
+                            from_chat_id=PRE_LOG, 
+                            message_id=copy.id)
+                except Exception as f:
+                    LOGGER.info(f)
                     elif tg_send_type == "file":
                         copy = await userbot.send_document(
                             chat_id=PRE_LOG,
@@ -369,6 +385,14 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                         )
+                    LOGGER.info(str(copy)) 
+                    if BOT_PM:
+                        await bot.copy_message(
+                            chat_id=chat_id, 
+                            from_chat_id=PRE_LOG, 
+                            message_id=copy.id)
+                except Exception as f:
+                    LOGGER.info(f)
                     elif (await db.get_upload_as_doc(user_id)) is True:
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_DOCUMENT)
@@ -386,6 +410,14 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                         )
+                    LOGGER.info(str(copy)) 
+                    if BOT_PM:
+                        await bot.copy_message(
+                            chat_id=chat_id, 
+                            from_chat_id=PRE_LOG, 
+                            message_id=copy.id)
+                except Exception as f:
+                    LOGGER.info(f)
                     else:
                         width, height, duration = await VideoMetaData(path)
                         thumb_image_path = await VideoThumb(bot, update, duration, path, random)
@@ -465,7 +497,7 @@ async def yt_dlp_call_back(bot, update):
                         duration = await AudioMetaData(path)
                         thumbnail = await DocumentThumb(bot, update)
                         await message.reply_to_message.reply_chat_action(ChatAction.UPLOAD_AUDIO)
-                        copy = await userbot.send_audio(
+                        copy = await bot.send_audio(
                             chat_id=PRE_LOG,
                             audio=path,
                             caption=caption,
