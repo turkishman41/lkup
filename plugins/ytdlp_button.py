@@ -408,13 +408,12 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                        ) 
-                if BOT_PM:
-                    try:
+                    if BOT_PM:
                         await bot.copy_messages(
                                 chat_id=chat_id, 
                                 from_chat_id=PRE_LOG, 
                                 message_id=copy.id)
-                    except Exception as f:
+                except Exception as f:
                         bot.send_message(OWNER_ID, f"{f}") 
                     if LOG_CHANNEL:
                         await copy.copy(LOG_CHANNEL)
