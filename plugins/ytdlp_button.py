@@ -24,25 +24,25 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
 def __init__(self, name=None, listener=None):
-self.name = name
-self.uploaded_bytes = 0
-self._last_uploaded = 0
-self.__listener = listener
-self.__start_time = time()
-self.__total_files = 0
-self.__is_cancelled = False
-self.__as_doc = AS_DOCUMENT
-self.__thumb = f"Thumbnails/{listener.message.from_user.id}.jpg"
-self.__msgs_dict = {}
-self.__corrupted = 0
-self.__resource_lock = RLock()
-self.__is_corrupted = False
-self.__sent_msg = bot.get_messages(self.__listener.message.chat.id, self.__listener.uid)
-self.__user_settings()
-self.__leech_log = PRE_LOG.copy()  # copy then pop to keep the original var as it is
-self.__bot = bot
-self.__user_id = listener.message.from_user.id
-self.isPrivate = listener.message.chat.type in ['private', 'group'] 
+    self.name = name
+    self.uploaded_bytes = 0
+    self._last_uploaded = 0
+    self.__listener = listener
+    self.__start_time = time()
+    self.__total_files = 0
+    self.__is_cancelled = False
+    self.__as_doc = AS_DOCUMENT
+    self.__thumb = f"Thumbnails/{listener.message.from_user.id}.jpg"
+    self.__msgs_dict = {}
+    self.__corrupted = 0
+    self.__resource_lock = RLock()
+    self.__is_corrupted = False
+    self.__sent_msg = bot.get_messages(self.__listener.message.chat.id, self.__listener.uid)
+    self.__user_settings()
+    self.__leech_log = PRE_LOG.copy()  # copy then pop to keep the original var as it is
+    self.__bot = bot
+    self.__user_id = listener.message.from_user.id
+    self.isPrivate = listener.message.chat.type in ['private', 'group'] 
 
 async def yt_dlp_call_back(bot, update):
     cb_data = update.data
