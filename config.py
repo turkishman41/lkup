@@ -75,6 +75,8 @@ PROCESS_MAX_TIMEOUT = 3600
 # watermark file
 DEF_WATER_MARK_FILE = ""
 
+BOT_PM = True
+
 # your telegram id
 OWNER_ID = int(environ.get("OWNER_ID", "1276627253"))
 
