@@ -24,7 +24,7 @@ async def run_speedtest(c: Client, m: Message):
         await hiztesti.edit(e)
         return
     hiztesti = await hiztesti.edit("`🔄 Sonuçlar Getiriliyor...`")
-    path = wget.download(result["share"])
+    hiztestifoto = speed.results.share()
 
     sonuccaption = f"""💡 <b>Hız Testi Sonucu</b>
     
@@ -38,7 +38,7 @@ async def run_speedtest(c: Client, m: Message):
 <b>Sponsor:</b> {result['server']['sponsor']}
 ⚡️ <b>Ping:</b> {result['ping']}"""
     msg = await c.send_photo(
-        chat_id=chat_id, photo=path, caption=sonuccaption
+        chat_id=chat_id, photo=hiztestifoto, caption=sonuccaption
     )
-    os.remove(path)
+    os.remove(hiztestifoto)
     await hiztesti.delete()
