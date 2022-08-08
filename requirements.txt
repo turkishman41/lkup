@@ -2,6 +2,8 @@ requests
 aiohttp
 hachoir
 heroku3
+wget
+speedtest-cli
 Pillow
 pyromod
 psutil
