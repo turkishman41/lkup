@@ -23,7 +23,26 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
                     handlers=[logging.FileHandler('log.txt'), logging.StreamHandler()],
                     level=logging.INFO)
 LOGGER = logging.getLogger(__name__)
-
+     def __init__(self, name=None, listener=None):
+        self.name = name
+        self.uploaded_bytes = 0
+        self._last_uploaded = 0
+        self.__listener = listener
+        self.__start_time = time()
+        self.__total_files = 0
+        self.__is_cancelled = False
+        self.__as_doc = AS_DOCUMENT
+        self.__thumb = f"Thumbnails/{listener.message.from_user.id}.jpg"
+        self.__msgs_dict = {}
+        self.__corrupted = 0
+        self.__resource_lock = RLock()
+        self.__is_corrupted = False
+        self.__sent_msg = app.get_messages(self.__listener.message.chat.id, self.__listener.uid)
+        self.__user_settings()
+        self.__leech_log = PRE_LOG.copy()  # copy then pop to keep the original var as it is
+        self.__app = app
+        self.__user_id = listener.message.from_user.id
+        self.isPrivate = listener.message.chat.type in ['private', 'group'] 
 
 async def yt_dlp_call_back(bot, update):
     cb_data = update.data
@@ -401,13 +420,163 @@ async def yt_dlp_call_back(bot, update):
                             )
                         )
                     if LOG_CHANNEL:
-                        await bot.copy.copy(chat_id)
+                        await copy.copy(chat_id)
                 except FloodWait as e:
                     print(f"Sleep of {e.value} required by FloodWait ...")
                     time.sleep(e.value)
                 except MessageNotModified:
                     pass
                     return
+ if BOT_PM:
+                                try:
+                                    app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
+                                except Exception as err:
+                                    LOGGER.error(f"Failed To Send Video in PM:\n{err}")
+                    else:
+                        self.__sent_msg = self.__sent_msg.reply_video(video=up_path,
+                                                                      quote=True,
+                                                                      caption=cap_mono,
+                                                                      duration=duration,
+                                                                      width=width,
+                                                                      height=height,
+                                                                      thumb=thumb,
+                                                                      supports_streaming=True,
+                                                                      disable_notification=True,
+                                                                      progress=self.__upload_progress)
+                        if not self.isPrivate and BOT_PM:
+                            try:
+                                app.send_video(chat_id=self.__user_id, video=self.__sent_msg.video.file_id,
+                                               caption=cap_mono)
+                            except Exception as err:
+                                LOGGER.error(f"Failed To Send Video in PM:\n{err}")
+                elif file_.upper().endswith(AUDIO_SUFFIXES):
+                    duration , artist, title = get_media_info(up_path)
+                    if len(LEECH_LOG) != 0:
+                        for leechchat in self.__leech_log:
+                            if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = rss_session
+                            else: usingclient = self.__app
+                            self.__sent_msg = usingclient.send_audio(chat_id=leechchat,audio=up_path,
+                                                                  caption=cap_mono,
+                                                                  duration=duration,
+                                                                  performer=artist,
+                                                                  title=title,
+                                                                  thumb=thumb,
+                                                                  disable_notification=True,
+                                                                  progress=self.__upload_progress)
+                            if BOT_PM:
+                                try:
+                                    app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
+                                except Exception as err:
+                                    LOGGER.error(f"Failed To Send Audio in PM:\n{err}")
+                    else:
+                        self.__sent_msg = self.__sent_msg.reply_audio(audio=up_path,
+                                                                      quote=True,
+                                                                      caption=cap_mono,
+                                                                      duration=duration,
+                                                                      performer=artist,
+                                                                      title=title,
+                                                                      thumb=thumb,
+                                                                      disable_notification=True,
+                                                                      progress=self.__upload_progress)
+                        if not self.isPrivate and BOT_PM:
+                            try:
+                                app.send_audio(chat_id=self.__user_id, audio=self.__sent_msg.audio.file_id,
+                                               caption=cap_mono)
+                            except Exception as err:
+                                LOGGER.error(f"Failed To Send Audio in PM:\n{err}")
+                elif file_.upper().endswith(IMAGE_SUFFIXES):
+                    if len(LEECH_LOG) != 0:
+                        for leechchat in self.__leech_log:
+                            if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = rss_session
+                            else: usingclient = self.__app
+                            self.__sent_msg = usingclient.send_photo(chat_id=leechchat,
+                                                                photo=up_path,
+                                                                caption=cap_mono,
+                                                                disable_notification=True,
+                                                                progress=self.__upload_progress)
+                            if BOT_PM:
+                                try:
+                                    app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
+                                except Exception as err:
+                                    LOGGER.error(f"Failed To Send Image in PM:\n{err}")
+                    else:
+                        self.__sent_msg = self.__sent_msg.reply_photo(photo=up_path,
+                                                                      quote=True,
+                                                                      caption=cap_mono,
+                                                                      disable_notification=True,
+                                                                      progress=self.__upload_progress)
+                        if not self.isPrivate and BOT_PM:
+                            try:
+                                app.send_photo(chat_id=self.__user_id, photo=self.__sent_msg.photo.file_id,
+                                               caption=cap_mono)
+                            except Exception as err:
+                                LOGGER.error(f"Failed To Send Image in PM:\n{err}")
+                else:
+                    notMedia = True
+            if self.__as_doc or notMedia:
+                if file_.upper().endswith(VIDEO_SUFFIXES) and thumb is None:
+                    thumb = take_ss(up_path)
+                    if self.__is_cancelled:
+                        if self.__thumb is None and thumb is not None and ospath.lexists(thumb):
+                            osremove(thumb)
+                        return
+                if len(LEECH_LOG) != 0:
+                    for leechchat in self.__leech_log:
+                        if ospath.getsize(up_path) > tgBotMaxFileSize: usingclient = rss_session
+                        else: usingclient = self.__app
+                        self.__sent_msg = usingclient.send_document(chat_id=leechchat,document=up_path,
+                                                                 thumb=thumb,
+                                                                 caption=cap_mono,
+                                                                 disable_notification=True,
+                                                                 progress=self.__upload_progress)
+                        if BOT_PM:
+                            try:
+                                app.copy_message(chat_id=self.__user_id, from_chat_id=self.__sent_msg.chat.id, message_id=self.__sent_msg.id)
+                            except Exception as err:
+                                LOGGER.error(f"Failed To Send Document in PM:\n{err}")
+                else:
+                    self.__sent_msg = self.__sent_msg.reply_document(document=up_path,
+                                                                     quote=True,
+                                                                     thumb=thumb,
+                                                                     caption=cap_mono,
+                                                                     disable_notification=True,
+                                                                     progress=self.__upload_progress)
+                    if not self.isPrivate and BOT_PM:
+                        try:
+                            app.send_document(chat_id=self.__user_id, document=self.__sent_msg.document.file_id,
+                                              caption=cap_mono)
+                        except Exception as err:
+                            LOGGER.error(f"Failed To Send Document in PM:\n{err}")
+        except FloodWait as f:
+            LOGGER.warning(str(f))
+            sleep(f.value)
+        except RPCError as e:
+            LOGGER.error(f"RPCError: {e} Path: {up_path}")
+            self.__corrupted += 1
+            self.__is_corrupted = True
+        except Exception as err:
+            LOGGER.error(f"{err} Path: {up_path}")
+            self.__corrupted += 1
+            self.__is_corrupted = True
+        if self.__thumb is None and thumb is not None and ospath.lexists(thumb):
+            osremove(thumb)
+        if not self.__is_cancelled:
+            osremove(up_path)
+
+                end_two = datetime.now()
+                time_taken_for_upload = (end_two - end_one).seconds
+                media_album_p = []
+                try:
+                    await bot.edit_message_text(
+                        text=Translation.AFTER_SUCCESSFUL_UPLOAD_MSG_WITH_TS.format(time_taken_for_download,
+                                                                                time_taken_for_upload),
+                        chat_id=chat_id,
+                        message_id=message_id,
+                        disable_web_page_preview=True
+                    )
+                except MessageNotModified:
+                    pass
+                return
             else:
                 is_w_f = False
                 images = await generate_screen_shots(
