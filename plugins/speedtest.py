@@ -28,7 +28,7 @@ async def run_speedtest(c: Client, m: Message):
 
     sonuccaption = f"""💡 <b>Hız Testi Sonucu</b>
     
-<u><b>Client:<b></u>
+<u><b>Şirket:<b></u>
 <b>ISP:</b> {result['client']['isp']}
 <b>Ülke:</b> {result['client']['country']}
   
