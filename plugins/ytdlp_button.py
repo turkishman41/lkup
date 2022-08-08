@@ -408,7 +408,7 @@ async def yt_dlp_call_back(bot, update):
                                 start_time
                             )
                        )
-                    print(str(message)) 
+                    print(str(copy)) 
                     if BOT_PM:
                         await client.copy_messages(
                             chat_id=chat_id, 
