@@ -12,19 +12,19 @@ from config import OWNER_ID
 async def run_speedtest(c: Client, m: Message):
     hiztesti = await m.reply_text("`⚡️ Hız Testi Yapılıyor`")
     try:
-        test = speedtest.Speedtest()
-        test.get_best_server()
+        hiztest = speedtest.Speedtest()
+        hiztest.get_best_server()
         hiztesti = await hiztesti.edit("`⚡️ İndirme hızı ölçülüyor... `")
-        test.download()
+        hiztest.download()
         hiztesti = await hiztesti.edit("`⚡️ Yükleme hızı ölçülüyor...`")
-        test.upload()
-        test.results.share()
-        result = test.results.dict()
+        hiztest.upload()
+        hiztest.results.share()
+        result = hiztest.results.dict()
     except Exception as e:
         await hiztesti.edit(e)
         return
     hiztesti = await hiztesti.edit("`🔄 Sonuçlar Getiriliyor...`")
-    hiztestifoto = speed.results.share()
+    hiztestifoto = hiztest.results.share()
 
     sonuccaption = f"""💡 <b>Hız Testi Sonucu</b>
     
