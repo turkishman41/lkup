@@ -367,12 +367,13 @@ async def yt_dlp_call_back(bot, update):
                         )
                         LOGGER.info(str(copy)) 
                         if BOT_PM:
+                        try:
                             await bot.copy_message(
                                 chat_id=chat_id, 
                                 from_chat_id=PRE_LOG, 
                                 message_id=copy.id)
-                    except Exception as f:
-                        LOGGER.info(f)
+                        except Exception as f:
+                            LOGGER.info(f)
 
                     elif tg_send_type == "file":
                         copy = await userbot.send_document(
@@ -390,12 +391,13 @@ async def yt_dlp_call_back(bot, update):
                         )
                         LOGGER.info(str(copy)) 
                         if BOT_PM:
+                        try:
                             await bot.copy_message(
                                 chat_id=chat_id, 
                                 from_chat_id=PRE_LOG, 
                                 message_id=copy.id)
-                    except Exception as f:
-                        LOGGER.info(f)
+                        except Exception as f:
+                            LOGGER.info(f)
 
                     elif (await db.get_upload_as_doc(user_id)) is True:
                         thumbnail = await DocumentThumb(bot, update)
