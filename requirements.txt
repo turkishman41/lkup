@@ -10,6 +10,7 @@ psutil
 TgCrypto
 motor
 dnspython
+ffmpeg
 python-dotenv
 git+https://github.com/yt-dlp/yt-dlp
 pyrogram
