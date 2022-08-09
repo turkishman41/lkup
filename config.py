@@ -44,14 +44,14 @@ def get_config_from_url():
         try:
             res = requests.get(CONFIG_FILE_URL)
             if res.status_code == 200:
-                Logger.info("Config uzaktan alındı. Status 200.")
+                LOGGER.info("Config uzaktan alındı. Status 200.")
                 with open('config.env', 'wb+') as f:
                     f.write(res.content)
                     f.close()
             else:
-                Logger.error(f"Failed to download config.env {res.status_code}")
+                LOGGER.error(f"Failed to download config.env {res.status_code}")
         except Exception as e:
-            Logger.error(f"CONFIG_FILE_URL: {e}")
+            LOGGER.error(f"CONFIG_FILE_URL: {e}")
     except TypeError:
         pass
 
@@ -60,7 +60,7 @@ if os.path.exists('config.env'): load_dotenv('config.env')
 
 id_pattern = re.compile(r'^.\d+$')
 
-Logger.info("--- CONFIGS STARTS HERE ---")
+LOGGER.info("--- CONFIGS STARTS HERE ---")
 
 
 # get a token from @BotFather and A Premium user Sessıon
