@@ -3,7 +3,6 @@ aiohttp
 hachoir
 heroku3
 wget
-git+https://github.com/jonathanong/heroku-buildpack-ffmpeg-latest
 speedtest-cli
 Pillow
 pyromod
