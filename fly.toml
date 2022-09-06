@@ -1,5 +1,5 @@
 # Set app name below, replace APP-NAME
-app = "urlbottr"
+app = "KitapBot"
 kill_signal = "SIGINT"
 kill_timeout = 5
 processes = []
