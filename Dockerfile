@@ -1,11 +1,15 @@
+FROM python:latest
 
-FROM 412314/mltb:heroku
+RUN apt update && apt upgrade -y
+RUN apt install git curl python3-pip ffmpeg aria2 -y
 
-WORKDIR /usr/src/app
-RUN chmod 777 /usr/src/app
+RUN cd /
+RUN git clone https://github.com/ali-mmagneto/URL-Yukleyici.git
 
-COPY . .
-RUN pip3 install --no-cache-dir -r requirements.txt
-RUN apt install git curl python3-pip ffmpeg -y
+RUN cd /KitapBot
+WORKDIR /KitapBot
 
-CMD ["bash", "start.sh"]
+RUN pip3 install -U pip
+RUN pip3 install -U -r requirements.txt
+
+CMD python3 bot.py
