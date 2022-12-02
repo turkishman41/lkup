@@ -5,7 +5,7 @@ kill_timeout = 5
 processes = []
 
 [env]
-CONFIG_FILE_URL = "/raw/"
+CONFIG_FILE_URL = "https://gist.githubusercontent.com/ali-mmagneto/278ff5a73df9612e10a4686568578207/raw/urlbot.env"
 
 # No need to touch below
 
