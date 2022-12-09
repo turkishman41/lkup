@@ -152,6 +152,8 @@ async def echo(bot, update):
         error_message = e_response.replace(
             "please report this issue on  https://github.com/yt-dlp/yt-dlp/issues?q= , filling out the appropriate issue template. Confirm you are on the latest version using  yt-dlp -U",
             "")
+        await asyncio.sleep(11)
+        return await error_message.delete()
         if "This video is only available for registered users." in error_message:
             error_message += Translation.SET_CUSTOM_USERNAME_PASSWORD
         time.sleep(1)
