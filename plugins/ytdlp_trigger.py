@@ -119,9 +119,9 @@ async def echo(bot, update):
     if ".cloud" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
-    if "https://sbthe.com" in url:
+    if "https://upstreamcdn.co" in url:
         command_to_exec.append("--referer")
-        command_to_exec.append("https://sbthe.com")
+        command_to_exec.append("https://upstreamcdn.co")
     if "closeload" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://closeload.com/")
