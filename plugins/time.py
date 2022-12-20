@@ -1,4 +1,4 @@
-, # written by :d
+# written by :d
 import pyrogram
 import time
 from pyrogram import filters
