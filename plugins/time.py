@@ -5,7 +5,8 @@ from pyrogram import filters
 from pyrogram import Client, __version__
 from pyrogram.raw.all import layer
 from functions.utils import ReadableTime
-from pyromod import listenimport logging
+from pyromod import listen
+import logging
 import os
 import time
 
