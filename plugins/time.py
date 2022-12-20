@@ -11,6 +11,6 @@ import time
 
 botStartTime = time.time()
 
-Client.on_message(filters.private & filters.command(["yas", "time"]))
+@Client.on_message(filters.private & filters.command(["yas", "time"]))
 async def time(c: Client, m: "types.Message"):
     m.reply_text(f"yaşım: {ReadableTime(time.time() - botStartTime)}"
