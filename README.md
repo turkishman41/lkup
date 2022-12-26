@@ -9,7 +9,6 @@ Bağlantıları Yüklemek için Telegram Botu.
 
 **Özellikleri**:
 
-👉 [YT-DLP'de Desteklenen Bağlantıları]() Telegram'a yükleyin.
 
 👉 HTTP/HTTPS'yi Dosya/Video olarak Telegram'a yükleyin.
 
