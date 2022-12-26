@@ -3,15 +3,15 @@ aiohttp
 hachoir
 heroku3
 wget
-speedtest-cli
 Pillow
 pyromod
 psutil
 TgCrypto
 motor
 dnspython
+git+https://github.com/Quicksilver81/gerek01
 ffmpeg
+git+https://github.com/Quicksilver81/gerek02
 python-dotenv
-git+https://github.com/yt-dlp/yt-dlp
 pyrogram
 aiofiles
