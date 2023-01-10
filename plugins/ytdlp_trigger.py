@@ -116,6 +116,9 @@ async def echo(bot, update):
             "-j",
             url
         ]
+    if ".sibnet.ru" in url:
+        command_to_exec.append("--referer")
+        command_to_exec.append("https://sibnet.ru/")
     if ".cloud" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
