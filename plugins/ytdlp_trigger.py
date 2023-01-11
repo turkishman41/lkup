@@ -119,6 +119,9 @@ async def echo(bot, update):
     if ".online" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
+    if ".diziyou.co" in url:
+        command_to_exec.append("--referer")
+        command_to_exec.append("https://play.diziyou.co/")
     if ".cloud" in url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
