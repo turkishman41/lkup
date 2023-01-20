@@ -37,7 +37,7 @@ class Bot(Client):
         if OWNER_ID != 0:
             try:
                 await self.send_message(text="Karanlığın küllerinden yeniden doğdum.",
-                    chat_id=OWNER_ID)
+                    chat_id=Config.OWNER_ID)
             except Exception as t:
                 LOGGER.error(str(t))
 
