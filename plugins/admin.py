@@ -18,7 +18,7 @@ from functions.progress import humanbytes
 from plugins.broadcast import broadcast_handler
 
 
-@Client.on_message(filters.command("status") & filters.user(OWNER_ID))
+@Client.on_message(filters.command("status"))
 async def status_handler(_, m: Message):
     msg = await m.reply_text(text="`İşleniyor...`")
     heroku_api = "https://api.heroku.com"
