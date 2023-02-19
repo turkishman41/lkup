@@ -9,7 +9,7 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 
 
-@Client.on_message(filters.command('log') & filters.user(OWNER_ID))
+@Client.on_message(filters.command('log'))
 async def log_handler(c: Client, m: Message):
     with open('log.txt', 'rb') as f:
         try:
