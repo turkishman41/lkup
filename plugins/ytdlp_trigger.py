@@ -24,8 +24,8 @@ progress_pattern = re.compile(
     r'(frame|fps|size|time|bitrate|speed)\s*\=\s*(\S+)'
 )
 
-async def read_stdera(start, send_message, proc):
-    async for line in readlines(proc.stderr):
+async def read_stdera(start, send_message, process, update):
+    async for line in readlines(process.stderr):
             line = line.decode('utf-8')
             progress = parse_progress(line)
             if progress:
@@ -39,7 +39,7 @@ async def read_stdera(start, send_message, proc):
 
                 if round(diff % 5)==0:
                     try:
-                        send_message.edit(text=text)
+                        send_message.edit_text(text=text)
                     except Exception as e:
                         print(e)
 
@@ -194,7 +194,7 @@ async def echo(bot, update):
         stderr=asyncio.subprocess.PIPE,
     )
     await asyncio.wait([
-            read_stdera(start, send_message, process),
+            read_stdera(start, send_message, process, update),
             process.wait(),
         ])
     
