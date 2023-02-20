@@ -20,7 +20,49 @@ from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
 from functions.utils import URL_REGEX
 from database.database import db
 
+progress_pattern = re.compile(
+    r'(frame|fps|size|time|bitrate|speed)\s*\=\s*(\S+)'
+)
 
+async def read_stdera(start, send_message, proc):
+    async for line in readlines(proc.stderr):
+            line = line.decode('utf-8')
+            progress = parse_progress(line)
+            if progress:
+                #Progress bar logic
+                now = time.time()
+                diff = start-now
+                text = 'İLERLEME\n'
+                text += 'Boyut : {}\n'.format(progress['size'])
+                text += 'Süre : {}\n'.format(progress['time'])
+                text += 'Hız : {}\n'.format(progress['speed'])
+
+                if round(diff % 5)==0:
+                    try:
+                        send_message.edit(text=text)
+                    except Exception as e:
+                        print(e)
+
+def parse_progress(line):
+    items = {
+        key: value for key, value in progress_pattern.findall(line)
+    }
+    if not items:
+        return None
+    return items
+
+async def readlines(stream):
+    pattern = re.compile(br'[\r\n]+')
+
+    data = bytearray()
+    while not stream.at_eof():
+        lines = pattern.split(data)
+        data[:] = lines.pop(-1)
+
+        for line in lines:
+            yield line
+
+        data.extend(await stream.read(1024))
 
 @Client.on_message(filters.regex(pattern=URL_REGEX))
 @Client.on_edited_message(filters.regex(pattern=URL_REGEX))
@@ -144,12 +186,19 @@ async def echo(bot, update):
         command_to_exec.append("--password")
         command_to_exec.append(yt_dlp_password)
     LOGGER.info(command_to_exec)
+    start = time.time()
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
         # stdout must a pipe to be accessible as process.stdout
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
     )
+    await asyncio.wait([
+            read_stdera(start, send_message, process),
+            proc.wait(),
+        ])
+    await proc.communicate()
+    
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
