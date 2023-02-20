@@ -1,5 +1,6 @@
 import asyncio
 import json
+import re
 import os
 from logging import getLogger, WARNING
 from os import remove as osremove, walk, path as ospath, rename as osrename
@@ -32,6 +33,52 @@ logging.basicConfig(format='%(asctime)s - %(name)s - %(levelname)s - %(message)s
 LOGGER = logging.getLogger(__name__)
 
  
+progress_pattern = re.compile(
+    r'(frame|fps|size|time|bitrate|speed)\s*\=\s*(\S+)'
+)
+
+async def read_stdera(start, process, bot, message_id, chat_id):
+    async for line in readlines(process.stderr):
+            line = line.decode('utf-8')
+            progress = parse_progress(line)
+            if progress:
+                #Progress bar logic
+                now = time.time()
+                diff = start-now
+                text = 'İLERLEME\n'
+                text += 'Boyut : {}\n'.format(progress['size'])
+                text += 'Süre : {}\n'.format(progress['time'])
+                text += 'Hız : {}\n'.format(progress['speed'])
+
+                if round(diff % 5)==0:
+                    try:
+                        await bot.edit_message_text(
+                            text=text,
+                            chat_id=chat_id,
+                            message_id=message_id)
+                    except Exception as e:
+                        print(e)
+
+def parse_progress(line):
+    items = {
+        key: value for key, value in progress_pattern.findall(line)
+    }
+    if not items:
+        return None
+    return items
+
+async def readlines(stream):
+    pattern = re.compile(br'[\r\n]+')
+
+    data = bytearray()
+    while not stream.at_eof():
+        lines = pattern.split(data)
+        data[:] = lines.pop(-1)
+
+        for line in lines:
+            yield line
+
+        data.extend(await stream.read(1024))
 
 async def yt_dlp_call_back(bot, update):
     cb_data = update.data
@@ -241,6 +288,10 @@ async def yt_dlp_call_back(bot, update):
         stdout=asyncio.subprocess.PIPE,
         stderr=asyncio.subprocess.PIPE,
     )
+    await asyncio.wait([
+            read_stdera(start, process, bot, message_id, chat_id),
+            process.wait(),
+        ])
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
     e_response = stderr.decode().strip()
