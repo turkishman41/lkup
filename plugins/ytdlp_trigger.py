@@ -195,9 +195,9 @@ async def echo(bot, update):
     )
     await asyncio.wait([
             read_stdera(start, send_message, process),
-            proc.wait(),
+            process.wait(),
         ])
-    await proc.communicate()
+    await process.communicate()
     
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
