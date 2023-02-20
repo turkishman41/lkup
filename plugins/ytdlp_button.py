@@ -46,10 +46,10 @@ async def read_stdera(start, process, bot, message_id, chat_id):
                 now = time.time()
                 diff = start-now
                 text = 'İndiriliyor 📥\n\n'
-                text += 'İndirilen Video Boyutu : `{}\n'.format(progress['size']`)
-                text += 'İndirilen Video Süresi: `{}\n'.format(progress['time']`)
-                text += 'İndirme Hızı : `{}\n'.format(progress['bitrate']`)
-                text += 'İşlem Hızı : `{}\n'.format(progress['speed']`)
+                text += 'İndirilen Video Boyutu : {}\n'.format(progress['size'])
+                text += 'İndirilen Video Süresi: {}\n'.format(progress['time'])
+                text += 'İndirme Hızı : {}\n'.format(progress['bitrate'])
+                text += 'İşlem Hızı : {}\n'.format(progress['speed'])
 
                 if round(diff % 5)==0:
                     try:
