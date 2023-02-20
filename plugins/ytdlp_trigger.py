@@ -197,7 +197,6 @@ async def echo(bot, update):
             read_stdera(start, send_message, process),
             process.wait(),
         ])
-    await process.communicate()
     
     # Wait for the subprocess to finish
     stdout, stderr = await process.communicate()
