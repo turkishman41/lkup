@@ -79,7 +79,7 @@ async def readlines(stream):
         for line in lines:
             yield line
 
-        data.extend(await stream.read(1024))
+        data.extend(await stream.read(1))
 
 async def yt_dlp_call_back(bot, update):
     cb_data = update.data
