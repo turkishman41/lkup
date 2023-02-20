@@ -58,7 +58,7 @@ async def read_stdera(start, process, bot, message_id, chat_id):
                             chat_id=chat_id,
                             message_id=message_id)
                     except Exception as e:
-                        await bot.send_message(chat_id, f"{e}")
+                        print(e)
 
 def parse_progress(line):
     items = {
