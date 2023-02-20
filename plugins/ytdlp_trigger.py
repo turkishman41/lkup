@@ -39,7 +39,7 @@ async def read_stdera(start, send_message, process, update):
 
                 if round(diff % 5)==0:
                     try:
-                        send_message.edit_text(text=text)
+                        await send_message.edit_text(text=text)
                     except Exception as e:
                         print(e)
 
