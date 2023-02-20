@@ -41,15 +41,15 @@ async def read_stdera(start, process, bot, message_id, chat_id):
     async for line in readlines(process.stderr):
             line = line.decode('utf-8')
             progress = parse_progress(line)
-            LOGGER.info(progress)
             if progress:
                 #Progress bar logic
                 now = time.time()
                 diff = start-now
-                text = 'İLERLEME\n'
+                text = f'{Translation.DOWNLOAD_START.format(custom_file_name)}'
                 text += 'Boyut : {}\n'.format(progress['size'])
                 text += 'Süre : {}\n'.format(progress['time'])
-                text += 'Hız : {}\n'.format(progress['speed'])
+                text += 'İndirme Hızı : {}\n'.format(progress['bitrate'])
+                text += 'İşlem Hızı : {}\n'.format(progress['speed'])
 
                 if round(diff % 5)==0:
                     try:
