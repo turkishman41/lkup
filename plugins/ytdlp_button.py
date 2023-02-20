@@ -57,7 +57,7 @@ async def read_stdera(start, process, bot, message_id, chat_id):
                             chat_id=chat_id,
                             message_id=message_id)
                     except Exception as e:
-                        print(e)
+                        await bot.send_message(chat_id, f"{e}")
 
 def parse_progress(line):
     items = {
@@ -282,6 +282,7 @@ async def yt_dlp_call_back(bot, update):
         command_to_exec.append(yt_dlp_password)
     LOGGER.info(command_to_exec)
     start = datetime.now()
+    start1 = time.time() 
     process = await asyncio.create_subprocess_exec(
         *command_to_exec,
         # stdout must a pipe to be accessible as process.stdout
@@ -289,7 +290,7 @@ async def yt_dlp_call_back(bot, update):
         stderr=asyncio.subprocess.PIPE,
     )
     await asyncio.wait([
-            read_stdera(start, process, bot, message_id, chat_id),
+            read_stdera(start1, process, bot, message_id, chat_id),
             process.wait(),
         ])
     # Wait for the subprocess to finish
