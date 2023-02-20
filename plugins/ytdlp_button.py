@@ -47,7 +47,7 @@ async def read_stdera(start, process, bot, message_id, chat_id):
                 diff = start-now
                 text = 'İndiriliyor 📥\n\n'
                 text += 'İndirilen Video Boyutu : {}\n'.format(progress['size'])
-                text += 'İndirilen Videonun Süresi: {}\n'.format(progress['time'])
+                text += 'İndirilen Video Süresi: {}\n'.format(progress['time'])
                 text += 'İndirme Hızı : {}\n'.format(progress['bitrate'])
                 text += 'İşlem Hızı : {}\n'.format(progress['speed'])
 
@@ -79,7 +79,7 @@ async def readlines(stream):
         for line in lines:
             yield line
 
-        data.extend(await stream.read(1))
+        data.extend(await stream.read(1024 * 1024))
 
 async def yt_dlp_call_back(bot, update):
     cb_data = update.data
