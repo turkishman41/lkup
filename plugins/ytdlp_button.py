@@ -45,9 +45,9 @@ async def read_stdera(start, process, bot, message_id, chat_id):
                 #Progress bar logic
                 now = time.time()
                 diff = start-now
-                text = f'{Translation.DOWNLOAD_START.format(custom_file_name)}'
-                text += 'Boyut : {}\n'.format(progress['size'])
-                text += 'Süre : {}\n'.format(progress['time'])
+                text = Translation.DOWNLOAD_START.format(custom_file_name)
+                text += 'İndirilen Video Boyutu : {}\n'.format(progress['size'])
+                text += 'İndirilen Videonun Süresi: {}\n'.format(progress['time'])
                 text += 'İndirme Hızı : {}\n'.format(progress['bitrate'])
                 text += 'İşlem Hızı : {}\n'.format(progress['speed'])
 
