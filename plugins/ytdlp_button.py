@@ -41,6 +41,7 @@ async def read_stdera(start, process, bot, message_id, chat_id):
     async for line in readlines(process.stderr):
             line = line.decode('utf-8')
             progress = parse_progress(line)
+            LOGGER.info(progress)
             if progress:
                 #Progress bar logic
                 now = time.time()
@@ -75,7 +76,6 @@ async def readlines(stream):
     while not stream.at_eof():
         lines = pattern.split(data)
         data[:] = lines.pop(-1)
-        LOGGER.info(data)
         for line in lines:
             yield line
 
