@@ -11,7 +11,7 @@ motor
 dnspython
 yt-dlp==2023.1.6
 ffmpeg
-git+https://github.com/Quicksilver81/gerek02
+git+https://github.com/Quicksilver81/gerek01
 python-dotenv
 pyrogram
 aiofiles
