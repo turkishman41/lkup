@@ -294,6 +294,8 @@ async def echo(bot, update):
                                             cb_string_video_message).encode("UTF-8")
                                     )
                                 )"""
+                        elif format_string is not None and not "jpeg" in format_string:
+                            await update.reply_text("Yok")
                         else:
                             ikeyboard = [
                                 InlineKeyboardButton(
