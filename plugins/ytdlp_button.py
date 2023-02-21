@@ -259,6 +259,9 @@ async def yt_dlp_call_back(bot, update):
     if ".cloud" in yt_dlp_url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://vidmoly.to/")
+    if ".mubicdn.net" in yt_dlp_url:
+        command_to_exec.append("--referer")
+        command_to_exec.append("https://mubi.com")
     if "storage.diziyou.co" in yt_dlp_url:
         command_to_exec.append("--referer")
         command_to_exec.append("https://storage.diziyou.co/episodes/")
