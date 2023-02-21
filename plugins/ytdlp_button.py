@@ -40,6 +40,7 @@ progress_pattern = re.compile(
 async def read_stdera(start, process, bot, message_id, chat_id):
     async for line in readlines(process.stderr):
             line = line.decode('utf-8')
+            LOGGER.info(process)
             progress = parse_progress(line)
             if progress:
                 #Progress bar logic
