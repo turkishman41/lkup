@@ -154,7 +154,7 @@ async def echo(bot, update):
             "yt-dlp",
             "--no-warnings",
             "--external-downloader","aria2c", 
-            "--allow-playable-formats", 
+            "--allow-unplayable-formats", 
             "--youtube-skip-dash-manifest",
             "--no-check-certificate",
             "-j",
