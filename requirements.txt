@@ -9,7 +9,6 @@ psutil
 TgCrypto
 motor
 dnspython
-yt-dlp==2023.1.6
 ffmpeg
 git+https://github.com/ali-mmagneto/gerek01
 git+https://github.com/ali-mmagneto/gerek02
