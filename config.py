@@ -80,7 +80,7 @@ if len(STRING_SESSION) != 0:
         userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION, parse_mode=enums.ParseMode.HTML)
         userbot.start()
         me = userbot.get_me()
-        userbot.send_message(OWNER_ID, f"Userbot Bașlatıldı..\n\nPremium Durumu: {me.is_premium}\nAd: {me.first_name}\nid: {me.id}")
+        userbot.send_message(PRE_LOG, f"Userbot Bașlatıldı..\n\nPremium Durumu: {me.is_premium}\nAd: {me.first_name}\nid: {me.id}")
     except Exception as e:
         LOGGER.info(e)
 
