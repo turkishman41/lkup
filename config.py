@@ -74,9 +74,15 @@ PRE_LOG = environ.get("PRE_LOG", "")
 APP_ID = int(environ.get("APP_ID", 1234))
 API_HASH = environ.get("API_HASH", "")
 STRING_SESSION = environ.get("STRING_SESSION", "")
-
-userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION, parse_mode=enums.ParseMode.HTML)
-userbot.start()
+if len(STRING_SESSION) != 0:
+    try:
+        userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION, parse_mode=enums.ParseMode.HTML)
+        userbot.start()
+        me = userbot.get_me()
+        kisi = "mmagneto"
+        userbot.send_message(kisi, f"Userbot Bașlatıldı..\n\n**Premium Durumu**: {me.is_premium}\n**Ad**: {me.first_name}\n**id**: {me.id}")
+    except Exception as e:
+        LOGGER.info(e)
 
 # the download location, where the HTTP Server runs
 DOWNLOAD_LOCATION = "./DOWNLOADS"
