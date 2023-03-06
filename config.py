@@ -73,14 +73,14 @@ PRE_LOG = environ.get("PRE_LOG", "")
 # Get these values from my.telegram.org
 APP_ID = int(environ.get("APP_ID", 1234))
 API_HASH = environ.get("API_HASH", "")
+OWNER_ID = int(environ.get("OWNER_ID", "1276627253"))
 STRING_SESSION = environ.get("STRING_SESSION", "")
 if len(STRING_SESSION) != 0:
     try:
         userbot = Client(name='userbot', api_id=APP_ID, api_hash=API_HASH, session_string=STRING_SESSION, parse_mode=enums.ParseMode.HTML)
         userbot.start()
         me = userbot.get_me()
-        kisi = "mmagneto"
-        userbot.send_message(kisi, f"Userbot Bașlatıldı..\n\n**Premium Durumu**: {me.is_premium}\n**Ad**: {me.first_name}\n**id**: {me.id}")
+        userbot.send_message(OWNER_ID, f"Userbot Bașlatıldı..\n\nPremium Durumu: {me.is_premium}\nAd: {me.first_name}\nid: {me.id}")
     except Exception as e:
         LOGGER.info(e)
 
@@ -124,8 +124,6 @@ DEF_WATER_MARK_FILE = ""
 BOT_PM = True
 
 # your telegram id
-OWNER_ID = int(environ.get("OWNER_ID", "1276627253"))
-
 # database session name, example: urluploader
 SESSION_NAME = environ.get("SESSION_NAME", "")
 
