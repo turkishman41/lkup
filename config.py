@@ -4,7 +4,7 @@ from os import environ
 from dotenv import load_dotenv
 from pyrogram import Client, __version__
 from pyrogram.types import InlineKeyboardMarkup, InlineKeyboardButton
-from pyrogram import Client
+from pyrogram import Client, enum
 import string
 import random
 import re
