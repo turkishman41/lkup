@@ -71,9 +71,9 @@ PRE_LOG = environ.get("PRE_LOG", "")
 
 # The Telegram API things
 # Get these values from my.telegram.org
-APP_ID = int(environ.get("APP_ID", 1234)
+APP_ID = int(environ.get("APP_ID", 1234))
 API_HASH = environ.get("API_HASH", "")
-OWNER_ID = int(environ.get("OWNER_ID", None)
+OWNER_ID = int(environ.get("OWNER_ID", None))
 STRING_SESSION = environ.get("STRING_SESSION", "")
 if len(STRING_SESSION) != 0:
     try:
